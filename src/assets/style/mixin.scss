@@ -1,0 +1,9 @@
+@mixin text-ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin text-num-family() {
+    font-family: "numFont";
+}

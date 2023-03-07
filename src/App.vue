@@ -1,9 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useCounterStore } from './stores/counter'
+const store = useCounterStore()
+
+const myincrement = () => {
+    store.$patch({
+        count: store.count + 1
+    })
+}
 </script>
 
 <template>
+    <p class="style-test">128</p>
+    <p class="css-test f_s_24">128</p>
+    <i class="iconfont icon-biaoge2"></i>
     <header>
         <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
@@ -15,12 +26,21 @@ import HelloWorld from './components/HelloWorld.vue'
                 <RouterLink to="/about">About</RouterLink>
             </nav>
         </div>
+
+        {{ store.count }}
+        {{ store.doubleCount }}
+        <button type="button" @click="store.increment()">按钮</button>
+        <button type="button" @click="myincrement()">按钮</button>
     </header>
 
     <RouterView />
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.css-test {
+    color: $error-color;
+    @include text-num-family;
+}
 header {
     line-height: 1.5;
     max-height: 100vh;

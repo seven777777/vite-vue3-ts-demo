@@ -1,0 +1,5 @@
+.style-test {
+    color: $error-color;
+    @extend .f_s_24;
+    @include text-num-family;
+}
