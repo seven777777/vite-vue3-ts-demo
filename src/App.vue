@@ -2,6 +2,7 @@
 import { onMounted, reactive, ref } from 'vue'
 import { changeTheme, DEFAULT_THEME_LIST } from '@/utils/theme'
 import ThemeConfig from '@/config/theme.config'
+import { getLoginInfo } from '@/api/common'
 const themeList = reactive(DEFAULT_THEME_LIST)
 const saveThemeMode = ref<string | null>('')
 onMounted(() => {
@@ -14,6 +15,9 @@ onMounted(() => {
         changeTheme(selectDom.value)
         console.log(ThemeConfig[selectDom.value])
     }
+    getLoginInfo().then(res => {
+        console.log(res)
+    })
 })
 </script>
 
