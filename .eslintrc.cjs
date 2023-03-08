@@ -11,5 +11,11 @@ module.exports = {
     ],
     parserOptions: {
         ecmaVersion: 'latest'
+    },
+    env: {
+        jquery: true
+    },
+    rules: {
+        // 'no-undef': 'off'
     }
 }

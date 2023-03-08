@@ -1,105 +1,49 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import { useCounterStore } from './stores/counter'
-const store = useCounterStore()
-
-const myincrement = () => {
-    store.$patch({
-        count: store.count + 1
-    })
-}
+import { onMounted, reactive, ref } from 'vue'
+import { changeTheme, DEFAULT_THEME_LIST } from '@/utils/theme'
+import ThemeConfig from '@/config/theme.config'
+const themeList = reactive(DEFAULT_THEME_LIST)
+const saveThemeMode = ref<string | null>('')
+onMounted(() => {
+    saveThemeMode.value = localStorage.getItem('kThemeMode')
+    if (saveThemeMode.value) {
+        changeTheme(saveThemeMode.value)
+    }
+    const selectDom = document.getElementById('theme-select') as HTMLSelectElement
+    selectDom.onchange = function () {
+        changeTheme(selectDom.value)
+        console.log(ThemeConfig[selectDom.value])
+    }
+})
 </script>
 
 <template>
-    <p class="style-test">128</p>
-    <p class="css-test f_s_24">128</p>
-    <i class="iconfont icon-biaoge2"></i>
-    <header>
-        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-        <div class="wrapper">
-            <HelloWorld msg="You did it!" />
-
-            <nav>
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/about">About</RouterLink>
-            </nav>
+    <div class="page_container">
+        <p class="test">12</p>
+        <div class="topic">Vue Theme Change</div>
+        <div>
+            <label for="theme-select">Current Theme:</label>
+            <select name="themes" id="theme-select">
+                <option v-for="(item, index) in themeList" :key="index" :value="item" :selected="item == saveThemeMode">
+                    {{ item }}
+                </option>
+            </select>
         </div>
-
-        {{ store.count }}
-        {{ store.doubleCount }}
-        <button type="button" @click="store.increment()">按钮</button>
-        <button type="button" @click="myincrement()">按钮</button>
-    </header>
-
-    <RouterView />
+    </div>
+    <!-- <RouterView /> -->
 </template>
 
 <style scoped lang="scss">
-.css-test {
-    color: $error-color;
-    @include text-num-family;
+.topic {
+    font-size: larger;
+    color: var(--color-heading);
 }
-header {
-    line-height: 1.5;
-    max-height: 100vh;
+.test {
+    color: black;
 }
-
-.logo {
-    display: block;
-    margin: 0 auto 2rem;
-}
-
-nav {
-    width: 100%;
-    font-size: 12px;
-    text-align: center;
-    margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-    color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-    background-color: transparent;
-}
-
-nav a {
-    display: inline-block;
-    padding: 0 1rem;
-    border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-    border: 0;
-}
-
-@media (min-width: 1024px) {
-    header {
-        display: flex;
-        place-items: center;
-        padding-right: calc(var(--section-gap) / 2);
-    }
-
-    .logo {
-        margin: 0 2rem 0 0;
-    }
-
-    header .wrapper {
-        display: flex;
-        place-items: flex-start;
-        flex-wrap: wrap;
-    }
-
-    nav {
-        text-align: left;
-        margin-left: -1rem;
-        font-size: 1rem;
-
-        padding: 1rem 0;
-        margin-top: 1rem;
+body[theme-mode='dark'] {
+    .test {
+        color: white;
     }
 }
 </style>
