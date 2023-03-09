@@ -1,3 +1,4 @@
+//  =========== 公共属性相关 =============
 // 数字类型
 .font-num {
     font-family: 'numFont';
@@ -7,4 +8,13 @@
     &:hover {
         color: $color-primary;
     }
+}
+
+// =========== 公共布局相关 =============
+.base-box-padding {
+    padding: 0 20px;
+}
+.base-box {
+    @include base-box-attr;
+    @extend .base-box-padding;
 }

@@ -7,6 +7,12 @@
     position: relative;
     font-weight: normal;
 }
+*:focus-visible {
+    outline: none;
+}
+* {
+    @include scroll-style;
+}
 
 /* 默认不要下划线 */
 a {

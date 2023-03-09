@@ -4,6 +4,19 @@
         'primary': (
             'base': variable.$color-primary
         )
+    ),
+    $text-color: (
+        'regular': var(--text-color)
+    ),
+    $bg-color: (
+        'overlay': var(--bg-color-overlay)
+    ),
+    $border-color: (
+        'light': var(--border-color)
+    ),
+    $dropdown: (
+        'menuItem-hover-fill': var(--menuItem-hover-fill),
+        'menuItem-hover-color': var(--text-color)
     )
 );
 

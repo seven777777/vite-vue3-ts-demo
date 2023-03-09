@@ -2,9 +2,22 @@
     <div class="head-bar">
         <div>search</div>
         <div class="flex_c">
-            <div class="head-nav-item"><a class="link" href="#">CRIC首页</a></div>
-            <div class="head-nav-item">CRIC首页</div>
-            <div class="head-nav-item">CRIC首页</div>
+            <div class="head-nav-item"><a href="#">CRIC首页</a></div>
+            <div class="head-nav-item"><a href="#">操作指南</a></div>
+            <div class="head-nav-item"><a href="#">数据说明</a></div>
+            <div class="head-nav-item">
+                <el-dropdown trigger="click">
+                    <span class="flex_c cursor_p">
+                        Seven
+                        <i class="iconfont icon-xiala m_l_5"></i>
+                    </span>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item>登出</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
+            </div>
         </div>
     </div>
 </template>
@@ -22,6 +35,8 @@
     .head-nav-item {
         color: var(--text-color);
         padding: 0 20px;
+        display: flex;
+        align-items: center;
         &::after {
             content: '';
             position: absolute;

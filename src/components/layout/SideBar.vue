@@ -77,7 +77,7 @@ watchEffect(() => {
         .logo {
             width: 100%;
             height: 100%;
-            @include abs_bg('logo-light.png');
+            @include abs-bg('logo-light.png');
             position: relative;
             z-index: 1000;
         }
@@ -127,7 +127,7 @@ body[theme-mode='dark'] {
             background: linear-gradient(135deg, #1e2450 30%, #14193a 80%);
         }
         .logo {
-            @include abs_bg('logo-deep.png');
+            @include abs-bg('logo-deep.png');
         }
     }
 }

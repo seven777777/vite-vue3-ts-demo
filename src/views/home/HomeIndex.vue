@@ -1,5 +1,5 @@
 <template>
-    <div>home</div>
+    <div class="base-box">123</div>
 </template>
 
 <script setup lang="ts"></script>

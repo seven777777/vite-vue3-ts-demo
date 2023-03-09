@@ -36,7 +36,7 @@ import HeadBar from '@/components/layout/HeadBar.vue'
 }
 .layout-main {
     width: calc(100% - 160px);
-    min-width: 1250px;
+    min-width: 1100px;
     .layout-head {
         height: 60px;
         padding: 0 20px;
