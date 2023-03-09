@@ -1,7 +1,7 @@
 // vite.config已经配置全局进入，所以此处可以不用引用
 // @import './variables.scss'; //全局样式变量
 // @import './mixin.scss';
-@import '../font/iconfont/iconfont.css'; //iconfont
+
 @import './reset.scss'; //基础默认样式重置
 @import './attr.scss'; //参数样式
 @import './common.scss'; //全局公共样式

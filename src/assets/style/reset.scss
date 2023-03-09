@@ -3,18 +3,52 @@
 *::after {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
     position: relative;
     font-weight: normal;
 }
 
+/* 默认不要下划线 */
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+/* 按钮文本不可选 */
+button {
+    user-select: none;
+}
+img {
+    vertical-align: middle;
+}
+/* 加载不出来的图片不要显示灰色边框 */
+img:not([src]),
+img[src=''] {
+    opacity: 0;
+}
+ul,
+ol {
+    list-style: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+input,
+select,
+button,
+textarea {
+    font-size: 100%;
+    font: inherit;
+}
+
 body {
     min-height: 100vh;
-    color: var(--color-text);
-    background: var(--color-background);
+    color: var(--text-color);
+    background: var(--bg-color-page);
     transition: color 0.5s, background-color 0.5s;
     line-height: 1.6;
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
-        "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: 'Helvetica Neue', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+        Cantarell, 'Fira Sans', 'Droid Sans', sans-serif;
     font-size: 14px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

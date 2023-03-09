@@ -1,9 +1,10 @@
 // 数字类型
 .font-num {
-    font-family: "numFont";
+    font-family: 'numFont';
 }
-
-.style-test {
-    color: $error-color;
-    @extend .f_s_24;
+.link {
+    color: var(--text-color);
+    &:hover {
+        color: $color-primary;
+    }
 }

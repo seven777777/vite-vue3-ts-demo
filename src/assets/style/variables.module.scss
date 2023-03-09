@@ -1,5 +1,11 @@
-@import './variables.scss';
+@use './variables.scss';
 
 :export {
-    errorColor: $error-color;
+    colorPrimary: $color-primary;
+    colorContrast: $color-contrast;
+    colorBlack: $color-black;
+    colorBlack1: $color-black-1;
+    colorBlack2: $color-black-2;
+    colorBlack3: $color-black-3;
+    colorWhite: $color-white;
 }

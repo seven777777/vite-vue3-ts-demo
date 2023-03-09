@@ -1,21 +1,49 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
+/**
+ * meta参数
+ * requireAuth  是否需要登录权限
+ * gLoading     是否需要全局loading
+ * curPageName  对应左侧导航高亮模块
+ *  ——不同模块对应
+ *      首页：home
+ *      地块搜索：landSearch
+ * keepAlive    是否缓存该页面。⚠️页面必须有name（组件名）路由配置也要增加name
+ *  ——该属性慎用！！！不要随意设置为true。使用时请结合keepAliveMixin的 keepAliveMixin_targetRouteNames
+ *  ——⚠️⚠️且在三级路由中无效
+ */
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: HomeView
+            redirect: '/home',
+            component: () => import('@/components/layout/BasePageLayout.vue'),
+            children: [
+                {
+                    path: 'home',
+                    name: 'home',
+                    component: () => import('@/views/home/HomeIndex.vue'),
+                    meta: {
+                        requireAuth: true,
+                        curPageName: 'home'
+                    }
+                },
+                {
+                    path: 'landsearch',
+                    name: 'landSearch',
+                    component: () => import('@/views/landSearch/LandSearch.vue'),
+                    meta: {
+                        requireAuth: true,
+                        curPageName: 'landSearch'
+                    }
+                }
+            ]
         }
         // {
         //     path: '/about',
         //     name: 'about',
-        //     // route level code-splitting
-        //     // this generates a separate chunk (About.[hash].js) for this route
-        //     // which is lazy-loaded when the route is visited.
-        //     component: () => import('../views/AboutView.vue')
+        //     component: () => import('../views/HomeView.vue')
         // }
     ]
 })

@@ -2,3 +2,21 @@
 .f_s_24 {
     font-size: 24px;
 }
+
+// flex
+.flex {
+    display: flex;
+}
+.flex_c {
+    @extend .flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex_ai_c {
+    @extend .flex;
+    align-items: center;
+}
+.flex_jc_sb {
+    @extend .flex;
+    justify-content: space-between;
+}
