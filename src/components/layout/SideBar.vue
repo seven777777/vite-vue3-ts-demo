@@ -9,8 +9,10 @@
                 v-for="(item, index) in navList"
                 :key="index"
                 :to="item.path"
-                ><i :class="['iconfont', item.icon]"></i> {{ item.title }}</router-link
             >
+                <i :class="['iconfont', item.icon]"></i>
+                {{ item.title }}
+            </router-link>
         </ul>
         <el-switch
             class="theme-switch"
@@ -114,7 +116,7 @@ watchEffect(() => {
         transform: translateX(-50%);
     }
 }
-body[theme-mode='dark'] {
+#{themeWrap('dark')} {
     .logo-box {
         background: repeating-linear-gradient(
             110deg,

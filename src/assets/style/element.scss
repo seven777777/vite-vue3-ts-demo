@@ -6,17 +6,27 @@
         )
     ),
     $text-color: (
-        'regular': var(--text-color)
+        'regular': var(--text-color),
+        'primary': var(--text-color)
     ),
     $bg-color: (
         'overlay': var(--bg-color-overlay)
     ),
     $border-color: (
+        '': var(--border-color),
         'light': var(--border-color)
     ),
     $dropdown: (
         'menuItem-hover-fill': var(--menuItem-hover-fill),
         'menuItem-hover-color': var(--text-color)
+    ),
+    $datepicker: (
+        'inrange-bg-color': var(--inrange-bg-color),
+        'inrange-hover-bg-color': var(--inrange-bg-color)
+    ),
+    $input: (
+        'bg-color': var(--input-bg-color),
+        'hover-border-color': var(--border-color)
     )
 );
 

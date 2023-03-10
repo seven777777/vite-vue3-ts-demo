@@ -16,5 +16,4 @@
 }
 .base-box {
     @include base-box-attr;
-    @extend .base-box-padding;
 }
