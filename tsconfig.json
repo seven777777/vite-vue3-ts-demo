@@ -14,5 +14,5 @@
             "path": "./tsconfig.node.json"
         }
     ],
-    "types": ["node"]
+    "types": ["node", "vite/client"]
 }

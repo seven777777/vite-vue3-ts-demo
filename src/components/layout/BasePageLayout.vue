@@ -30,7 +30,7 @@ import HeadBar from '@/components/layout/HeadBar.vue'
 .layout-side-bar {
     flex-shrink: 0;
     width: 160px;
-    box-shadow: 4px 0px 8px 0px rgba(0, 12, 67, 0.08);
+    box-shadow: var(--box-shadow);
     position: relative;
     z-index: 1000;
 }

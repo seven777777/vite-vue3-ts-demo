@@ -36,6 +36,8 @@ import { useRoute } from 'vue-router'
 // 主题配置Store
 const themeStore = useThemeStore()
 const theme = ref<string>(themeStore.themeType)
+// 初始化主题
+themeStore.setTheme(theme.value)
 
 // 导航列表
 interface INavItem {
@@ -52,7 +54,7 @@ let curPageName = ref<string>('')
 let route = useRoute()
 // 监听路由动态修改导航高亮item
 watchEffect(() => {
-    curPageName.value = route.meta.curPageName
+    curPageName.value = route.meta.curPageName as string
 })
 </script>
 

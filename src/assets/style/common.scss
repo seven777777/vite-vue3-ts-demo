@@ -5,6 +5,7 @@
 }
 .link {
     color: var(--text-color);
+    cursor: pointer;
     &:hover {
         color: $color-primary;
     }

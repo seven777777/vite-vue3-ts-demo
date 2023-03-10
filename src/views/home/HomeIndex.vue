@@ -18,15 +18,50 @@
         <el-col :span="18">
             <div class="base-box news-wrap">
                 <div class="news-pic"></div>
+                <swiper
+                    v-if="newsList.length"
+                    class="swiper-box"
+                    direction="vertical"
+                    :autoplay="{ delay: 2600, pauseOnMouseEnter: true }"
+                    :loop="true"
+                    :modules="[Autoplay]"
+                    @click="swiperClick"
+                >
+                    <swiper-slide class="swiper-item" v-for="news in newsList" :key="news.id">
+                        <div class="innerText link" :data-id="news.id">
+                            <span>【{{ news.type }}-{{ news.city }}】</span>
+                            {{ news.content }}
+                        </div>
+                    </swiper-slide>
+                </swiper>
             </div>
         </el-col>
     </el-row>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Autoplay } from 'swiper'
+import 'swiper/scss'
+import { getNews } from '@/api/home'
+import { reactive, ref, onMounted } from 'vue'
 
 const value1 = ref(['2022-10-01', '2023-03-10'])
+const swiperClick: (e: any) => void = e => {
+    console.log(e)
+}
+interface INewList {
+    id: number
+    content: string
+    date: string
+    type: string
+    city: string
+}
+let newsList: INewList[] = reactive([])
+getNews().then(res => {
+    newsList.push(...res.data)
+})
+onMounted(async () => {})
 </script>
 
 <style lang="scss" scoped>
@@ -47,6 +82,7 @@ const value1 = ref(['2022-10-01', '2023-03-10'])
     padding: 0 8px 0 16px;
 }
 .news-pic {
+    flex-shrink: 0;
     width: 75px;
     height: 15px;
     @include abs-bg('news-light.png');
@@ -54,6 +90,19 @@ const value1 = ref(['2022-10-01', '2023-03-10'])
 #{themeWrap('dark')} {
     .news-pic {
         @include abs-bg('news-deep.png');
+    }
+}
+.swiper-box {
+    flex: 1;
+    height: 42px;
+    margin-left: 15px;
+    .swiper-item {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .innerText {
+            @include one_line_hidden;
+        }
     }
 }
 </style>
