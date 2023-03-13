@@ -38,6 +38,11 @@
                 </swiper>
             </div>
         </el-col>
+        <el-col :span="12" class="m_t_15">
+            <div class="base-box">
+                <BaseEchart :options="options" height="400px"></BaseEchart>
+            </div>
+        </el-col>
     </el-row>
 </template>
 
@@ -46,8 +51,10 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper'
 import 'swiper/scss'
 import { getNews } from '@/api/home'
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { LandTypeColor } from '@/config/land.config'
+import BaseEchart from '@/components/chart/BaseEchart.vue'
+import type { EChartsOption } from 'echarts'
 
 const value1 = ref(['2022-10-01', '2023-03-10'])
 const swiperClick: (swiper: any, event: any) => void = (swiper, event) => {
@@ -64,6 +71,51 @@ let newsList: INewList[] = reactive([])
 getNews().then(res => {
     newsList.push(...res.data)
 })
+
+const rankingData = [
+    { name: '赵四', value: 700 },
+    { name: '关二', value: 130 },
+    { name: '刘大', value: 100 },
+    { name: '诸五', value: 80 },
+    { name: '张三', value: 30 }
+]
+const options = ref(
+    computed((): EChartsOption => {
+        return {
+            dataset: {
+                source: rankingData.map(item => {
+                    return [item.value, item.name]
+                })
+            },
+            grid: { containLabel: true },
+            xAxis: {
+                name: '',
+                splitLine: {
+                    show: false
+                }
+            },
+            yAxis: {
+                type: 'category',
+                splitLine: {
+                    show: false
+                }
+            },
+            series: [
+                {
+                    type: 'bar',
+                    encode: {},
+                    label: {
+                        position: 'right',
+                        show: true
+                    },
+                    labelLine: {
+                        show: false
+                    }
+                }
+            ]
+        }
+    })
+)
 </script>
 
 <style lang="scss" scoped>
