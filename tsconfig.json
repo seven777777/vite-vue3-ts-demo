@@ -6,6 +6,7 @@
         "paths": {
             "@/*": ["./src/*"]
         },
+        "types": ["jquery"],
         "suppressImplicitAnyIndexErrors": true // 开启索引到对象时禁止报告有关隐式anys的错误
     },
 

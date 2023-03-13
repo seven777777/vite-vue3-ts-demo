@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
-import { ThemeConfig } from '@/config/theme.config'
-import type { IThemeConfig } from '@/config/theme.config'
+import { ThemeConfig, type IThemeConfig } from '@/config/theme.config'
 
 export interface IThemeState {
     themeType: string

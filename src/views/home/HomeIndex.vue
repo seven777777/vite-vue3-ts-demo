@@ -29,7 +29,9 @@
                 >
                     <swiper-slide class="swiper-item" v-for="news in newsList" :key="news.id">
                         <div class="innerText link" :data-id="news.id">
-                            <span>【{{ news.type }}-{{ news.city }}】</span>
+                            <span :style="{ '--tag-color': LandTypeColor[news.type] + '' }">
+                                【{{ news.type }}-{{ news.city }}】
+                            </span>
                             {{ news.content }}
                         </div>
                     </swiper-slide>
@@ -44,11 +46,12 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper'
 import 'swiper/scss'
 import { getNews } from '@/api/home'
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref } from 'vue'
+import { LandTypeColor } from '@/config/land.config'
 
 const value1 = ref(['2022-10-01', '2023-03-10'])
-const swiperClick: (e: any) => void = e => {
-    console.log(e)
+const swiperClick: (swiper: any, event: any) => void = (swiper, event) => {
+    console.log(event.target.getAttribute('data-id'))
 }
 interface INewList {
     id: number
@@ -61,7 +64,6 @@ let newsList: INewList[] = reactive([])
 getNews().then(res => {
     newsList.push(...res.data)
 })
-onMounted(async () => {})
 </script>
 
 <style lang="scss" scoped>
@@ -102,6 +104,9 @@ onMounted(async () => {})
         align-items: center;
         .innerText {
             @include one_line_hidden;
+            span {
+                color: var(--tag-color);
+            }
         }
     }
 }
