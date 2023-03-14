@@ -38,10 +38,15 @@
                 </swiper>
             </div>
         </el-col>
-        <el-col :span="12" class="m_t_15">
+    </el-row>
+    <el-row :gutter="10" class="m_t_15">
+        <el-col :span="12">
             <div class="base-box">
                 <BaseEchart :options="options" height="400px" @echartClick="clickChart"></BaseEchart>
             </div>
+        </el-col>
+        <el-col :span="12">
+            <div class="base-box">11</div>
         </el-col>
     </el-row>
 </template>
@@ -51,10 +56,10 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper'
 import 'swiper/scss'
 import { getNews } from '@/api/home'
-import { computed, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { LandTypeColor } from '@/config/land.config'
 import BaseEchart from '@/components/chart/BaseEchart.vue'
-import type { EChartsOption } from 'echarts'
+import { getBaseOpt } from '@/utils/echartsOptionFactory'
 
 const value1 = ref(['2022-10-01', '2023-03-10'])
 const swiperClick: (swiper: any, event: any) => void = (swiper, event) => {
@@ -72,48 +77,23 @@ getNews().then(res => {
     newsList.push(...res.data)
 })
 
-const rankingData = [
-    { name: '赵四', value: 700 },
-    { name: '关二', value: 130 },
-    { name: '刘大', value: 100 },
-    { name: '诸五', value: 80 },
-    { name: '张三', value: 30 }
-]
-const options = ref(
-    computed((): EChartsOption => {
-        return {
-            dataset: {
-                source: rankingData.map(item => {
-                    return [item.value, item.name]
-                })
+let options = ref(
+    getBaseOpt({
+        xAxisData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        seriesList: [
+            {
+                data: [120, 200, 150, 80, 70, 110, 130],
+                type: 'bar',
+                color: ['#FFA362', '#F56500'],
+                unit: ''
             },
-            grid: { containLabel: true },
-            xAxis: {
-                name: '',
-                splitLine: {
-                    show: false
-                }
-            },
-            yAxis: {
-                type: 'category',
-                splitLine: {
-                    show: false
-                }
-            },
-            series: [
-                {
-                    type: 'bar',
-                    encode: {},
-                    label: {
-                        position: 'right',
-                        show: true
-                    },
-                    labelLine: {
-                        show: false
-                    }
-                }
-            ]
-        }
+            {
+                data: [120, 200, 150, 80, 70, 110, 130],
+                type: 'line',
+                color: '#0094FF',
+                unit: ''
+            }
+        ]
     })
 )
 
