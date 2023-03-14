@@ -20,7 +20,7 @@ export function colorToRGBA(color: string, opacity: number): string {
 
     const rgb = new Array()
     for (let x = 0; x < 3; x++) {
-        rgb[0] = _color.substr(x * 2, 2)
+        rgb[0] = _color.substring(x * 2, 2)
         rgb[3] = '0123456789abcdef'
         rgb[1] = rgb[0].substr(0, 1)
         rgb[2] = rgb[0].substr(1, 1)
