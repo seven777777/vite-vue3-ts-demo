@@ -42,7 +42,7 @@
     <el-row :gutter="10" class="m_t_15">
         <el-col :span="12">
             <div class="base-box">
-                <BaseEchart :options="options" height="400px" @echartClick="clickChart"></BaseEchart>
+                <BaseEchart :options="chartData.options" height="400px" @echartClick="clickChart"></BaseEchart>
             </div>
         </el-col>
         <el-col :span="12">
@@ -77,25 +77,26 @@ getNews().then(res => {
     newsList.push(...res.data)
 })
 
-let options = ref(
-    getBaseOpt({
-        xAxisData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        seriesList: [
-            {
-                data: [120, 200, 150, 80, 70, 110, 130],
-                type: 'bar',
-                color: ['#FFA362', '#F56500'],
-                unit: ''
-            },
-            {
-                data: [120, 200, 150, 80, 70, 110, 130],
-                type: 'line',
-                color: '#0094FF',
-                unit: ''
-            }
-        ]
-    })
-)
+const chartData = reactive({
+    options: {}
+})
+chartData.options = getBaseOpt({
+    xAxisData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    seriesList: [
+        {
+            data: [120, 200, 150, 80, 70, 110, 130],
+            type: 'bar',
+            color: ['#FFA362', '#F56500'],
+            unit: ''
+        },
+        {
+            data: [120, 200, 150, 80, 70, 110, 130],
+            type: 'line',
+            color: '#0094FF',
+            unit: ''
+        }
+    ]
+})
 
 function clickChart(param: any) {
     console.log(param)
