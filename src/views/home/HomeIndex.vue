@@ -40,7 +40,7 @@
         </el-col>
         <el-col :span="12" class="m_t_15">
             <div class="base-box">
-                <BaseEchart :options="options" height="400px"></BaseEchart>
+                <BaseEchart :options="options" height="400px" @echartClick="clickChart"></BaseEchart>
             </div>
         </el-col>
     </el-row>
@@ -116,6 +116,10 @@ const options = ref(
         }
     })
 )
+
+function clickChart(param: any) {
+    console.log(param)
+}
 </script>
 
 <style lang="scss" scoped>

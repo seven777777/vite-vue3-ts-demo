@@ -16,8 +16,8 @@
         </ul>
         <el-switch
             class="theme-switch"
-            v-model="theme"
-            @change="themeStore.setTheme(theme)"
+            v-model="themeStore.themeType"
+            @change="themeStore.setTheme(themeStore.themeType)"
             inline-prompt
             active-value="dark"
             inactive-value="light"
@@ -35,9 +35,8 @@ import { useRoute } from 'vue-router'
 
 // 主题配置Store
 const themeStore = useThemeStore()
-const theme = ref<string>(themeStore.themeType)
 // 初始化主题
-themeStore.setTheme(theme.value)
+themeStore.setTheme(themeStore.themeType)
 
 // 导航列表
 interface INavItem {

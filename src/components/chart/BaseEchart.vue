@@ -5,38 +5,62 @@
 <script setup lang="ts">
 import type { EChartsOption } from 'echarts'
 import useEchart from '@/utils/useEcharts'
-import { onMounted, ref, watchEffect } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch, watchEffect } from 'vue'
 import { useThemeStore } from '@/stores/theme'
 const themeStore = useThemeStore()
-const theme = ref<string>(themeStore.themeType)
+
 // 定义props
 const props = withDefaults(
     defineProps<{
         options: EChartsOption
         width?: string
         height?: string
-        mode?: string
     }>(),
     {
         width: '100%',
-        height: '100%',
-        mode: 'light' //'light'|'dark'
+        height: '100%'
     }
 )
 
 const emits = defineEmits(['echartClick'])
 const echartDivRef = ref()
-onMounted(() => {
-    const { setOptions, echartInstance } = useEchart(echartDivRef.value, props.mode)
 
-    watchEffect(() => {
-        setOptions(props.options)
-    })
-
+const onDraw = (UseEchart: any) => {
     //图表项点击
-    echartInstance.on('click', param => {
+    UseEchart.echartInstance.on('click', (param: any) => {
         emits('echartClick', param)
     })
+    window.addEventListener('resize', () => {
+        UseEchart.updateSize()
+    })
+}
+const onDispose = (UseEchart: any) => {
+    UseEchart.echartInstance.dispose()
+    UseEchart.echartInstance.onclick = null
+    window.onresize = null
+}
+
+onMounted(() => {
+    let myUseEchart = new useEchart(echartDivRef.value, themeStore.themeType)
+    watchEffect(() => {
+        myUseEchart.setOptions(props.options)
+    })
+    onDraw(myUseEchart)
+    watch(
+        () => themeStore.themeType,
+        () => {
+            if (myUseEchart.echartInstance) {
+                onDispose(myUseEchart)
+            }
+            myUseEchart.theme = themeStore.themeType
+            myUseEchart.echartInstance = myUseEchart.initChart()
+            myUseEchart.setOptions(props.options)
+            onDraw(myUseEchart)
+        }
+    )
+})
+onBeforeUnmount(() => {
+    window.onresize = null
 })
 </script>
 

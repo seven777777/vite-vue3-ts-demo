@@ -1,20 +1,23 @@
 import * as echarts from 'echarts'
 
-export default function (el: HTMLElement, mode: string) {
-    const echartInstance = echarts.init(el, mode)
-
-    const setOptions = (options: echarts.EChartsOption) => {
-        echartInstance.setOption(options)
+class useEcharts {
+    echartInstance: any
+    el: HTMLElement
+    theme: string
+    constructor(el: HTMLElement, theme: string) {
+        this.el = el
+        this.theme = theme
+        this.echartInstance = this.initChart()
     }
-    const updateSize = () => {
-        echartInstance.resize()
+    initChart() {
+        return echarts.init(this.el, this.theme)
     }
-    window.addEventListener('resize', () => {
-        echartInstance.resize()
-    })
-    return {
-        echartInstance,
-        setOptions,
-        updateSize
+    setOptions(options: echarts.EChartsOption) {
+        this.echartInstance.setOption(options)
+    }
+    updateSize() {
+        this.echartInstance.resize()
     }
 }
+
+export default useEcharts
