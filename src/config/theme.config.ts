@@ -25,7 +25,8 @@ export const ThemeConfig: IThemeConfig = {
         '--scroll-bg-color': variable.fillColorLight1,
         '--scroll-thumb-color': variable.fillColorLight3,
         '--inrange-bg-color': variable.fillColorLight1,
-        '--input-bg-color': variable.colorWhite
+        '--input-bg-color': variable.colorWhite,
+        '--loading-bg-color': 'rgba(255, 255, 255, 0.6)'
     },
     dark: {
         '--bg-color': variable.fillColorDark3,
@@ -43,6 +44,7 @@ export const ThemeConfig: IThemeConfig = {
         '--scroll-bg-color': variable.fillColorDark2,
         '--scroll-thumb-color': variable.fillColorDark4,
         '--inrange-bg-color': variable.fillColorDark2,
-        '--input-bg-color': variable.fillColorDark3
+        '--input-bg-color': variable.fillColorDark3,
+        '--loading-bg-color': 'rgba(27, 31, 63, 0.8)'
     }
 }

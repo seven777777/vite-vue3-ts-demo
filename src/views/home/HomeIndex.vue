@@ -55,7 +55,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper'
 import 'swiper/scss'
-import { getNews } from '@/api/home'
+import { getNews, getTradeVolumn } from '@/api/home'
 import { reactive, ref } from 'vue'
 import { LandTypeColor } from '@/config/land.config'
 import BaseEchart from '@/components/chart/BaseEchart.vue'
@@ -80,22 +80,10 @@ getNews().then(res => {
 const chartData = reactive({
     options: {}
 })
-chartData.options = getBaseOpt({
-    xAxisData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    seriesList: [
-        {
-            data: [120, 200, 150, 80, 70, 110, 130],
-            type: 'bar',
-            color: ['#FFA362', '#F56500'],
-            unit: ''
-        },
-        {
-            data: [120, 200, 150, 80, 70, 110, 130],
-            type: 'line',
-            color: '#0094FF',
-            unit: ''
-        }
-    ]
+const baseParam = { startDate: value1.value[0], endDate: value1.value[1] }
+
+getTradeVolumn(baseParam).then(res => {
+    chartData.options = getBaseOpt(res.data)
 })
 
 function clickChart(param: any) {

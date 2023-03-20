@@ -5,6 +5,7 @@ export interface SeriesItem {
     data: (number | object)[]
     type: any
     unit: string
+    name?: string
     color?: string | string[]
 }
 export interface ChartParam {
@@ -17,6 +18,7 @@ export const getBaseOpt = (opt: ChartParam): EChartsOption => {
     const getSeries = (seriesList: SeriesItem[]): any => {
         return seriesList.map(item => {
             return {
+                ...item.name?{name:item.name}:{},
                 type: item.type,
                 data: item.data,
                 ...(item.type == 'bar'
