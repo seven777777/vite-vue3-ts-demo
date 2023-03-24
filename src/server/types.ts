@@ -27,3 +27,7 @@ export interface RequestConfig extends AxiosRequestConfig {
     interceptors?: RequestInterceptors
     noLoading?: boolean
 }
+
+export interface CancelRequestSource {
+    [index: string]: () => void
+}

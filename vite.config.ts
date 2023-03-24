@@ -6,6 +6,13 @@ import inject from '@rollup/plugin-inject'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://127.0.0.1:4523/m1/2407937-0-default'
+            }
+        }
+    },
     plugins: [
         vue(),
         inject({

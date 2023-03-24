@@ -11,17 +11,17 @@ interface MyRequestConfig<T> extends RequestConfig {
 }
 
 const Server = new Request({
-    baseURL: 'http://127.0.0.1:4523/m1/2407937-0-default/', // 基础路径
+    baseURL: '/api', // 基础路径
     timeout: 120000,
     interceptors: {
         // 请求拦截器
         requestInterceptors: config => {
-            console.log('实例请求拦截')
+            // console.log('实例请求拦截')
             return config
         },
         // 响应拦截器
         responseInterceptors: result => {
-            console.log('实例响应拦截')
+            // console.log('实例响应拦截')
             return result
         }
     }
@@ -43,3 +43,12 @@ const request = <T = any>(config: MyRequestConfig<T>) => {
 }
 
 export default request
+
+// 取消请求
+export const cancelRequest = (url: string | string[]) => {
+    return Server.cancelRequest(url)
+}
+// 取消全部请求
+export const cancelAllRequest = () => {
+    return Server.cancelAllRequest()
+}

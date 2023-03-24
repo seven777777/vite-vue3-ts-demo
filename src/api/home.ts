@@ -14,5 +14,6 @@ export const getTradeVolumn = (params: { startDate: string; endDate: string }) =
         method: 'post',
         url: '/tradeVolumn',
         params
+        // noLoading: true
     })
 }

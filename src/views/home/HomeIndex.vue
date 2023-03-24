@@ -49,6 +49,10 @@
             <div class="base-box">11</div>
         </el-col>
     </el-row>
+
+    <el-button @click="request">发送请求</el-button>
+    <el-button @click="cancelRequest('/tradeVolumn')">取消请求</el-button>
+    <el-button @click="cancelAllRequest">取消全部请求</el-button>
 </template>
 
 <script setup lang="ts">
@@ -60,6 +64,7 @@ import { reactive, ref } from 'vue'
 import { LandTypeColor } from '@/config/land.config'
 import BaseEchart from '@/components/chart/BaseEchart.vue'
 import { getBaseOpt } from '@/utils/echartsOptionFactory'
+import { cancelRequest, cancelAllRequest } from '@/server'
 
 const value1 = ref(['2022-10-01', '2023-03-10'])
 const swiperClick: (swiper: any, event: any) => void = (swiper, event) => {
@@ -73,22 +78,27 @@ interface INewList {
     city: string
 }
 let newsList: INewList[] = reactive([])
-getNews().then(res => {
-    newsList.push(...res.data)
-})
 
 const chartData = reactive({
     options: {}
 })
 const baseParam = { startDate: value1.value[0], endDate: value1.value[1] }
 
-getTradeVolumn(baseParam).then(res => {
-    chartData.options = getBaseOpt(res.data)
-})
-
 function clickChart(param: any) {
     console.log(param)
 }
+
+const request = () => {
+    setTimeout(() => {
+        getNews().then(res => {
+            newsList.push(...res.data)
+        })
+        getTradeVolumn(baseParam).then(res => {
+            chartData.options = getBaseOpt(res.data)
+        })
+    }, 0)
+}
+request()
 </script>
 
 <style lang="scss" scoped>
