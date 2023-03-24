@@ -17,5 +17,8 @@ module.exports = {
     },
     rules: {
         // 'no-undef': 'off'
+    },
+    globals: {
+        AMap: 'true'
     }
 }
