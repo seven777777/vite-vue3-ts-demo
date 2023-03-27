@@ -1,8 +1,8 @@
 <template>
     <div class="head-bar">
-        <div>search</div>
+        <head-search />
         <div class="flex_c">
-            <div class="head-nav-item"><a href="#">CRIC首页</a></div>
+            <div class="head-nav-item"><a href="/">CRIC首页</a></div>
             <div class="head-nav-item"><a href="#">操作指南</a></div>
             <div class="head-nav-item"><a href="#">数据说明</a></div>
             <div class="head-nav-item">
@@ -22,7 +22,9 @@
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeadSearch from '@/components/filter/HeadSearch.vue'
+</script>
 
 <style lang="scss" scoped>
 .head-bar {

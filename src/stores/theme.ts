@@ -17,6 +17,9 @@ export const useThemeStore = defineStore('theme', {
         // 当前主题的配置
         currentThemeConfig(): IThemeConfig {
             return ThemeConfig[this.themeType]
+        },
+        mapStyle(): string {
+            return this.themeType == 'dark' ? 'amap://styles/dark' : 'amap://styles/light'
         }
     },
     actions: {

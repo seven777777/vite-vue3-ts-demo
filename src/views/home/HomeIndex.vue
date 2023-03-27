@@ -47,12 +47,7 @@
         </el-col>
         <el-col :span="12">
             <div class="base-box map-box">
-                <el-amap
-                    mapStyle="amap://styles/3fafc0b2658699a7754958d71361f1f2"
-                    :center="center"
-                    :zoom="zoom"
-                    @init="init"
-                />
+                <el-amap :mapStyle="themeStore.mapStyle" :center="center" :zoom="zoom" @init="init" />
             </div>
         </el-col>
     </el-row>
@@ -72,6 +67,8 @@ import { LandTypeColor } from '@/config/land.config'
 import BaseEchart from '@/components/chart/BaseEchart.vue'
 import { getBaseOpt } from '@/utils/echartsOptionFactory'
 import { cancelRequest, cancelAllRequest } from '@/server'
+import { useThemeStore } from '@/stores/theme'
+let themeStore = useThemeStore()
 
 const value1 = ref(['2022-10-01', '2023-03-10'])
 const swiperClick: (swiper: any, event: any) => void = (swiper, event) => {
