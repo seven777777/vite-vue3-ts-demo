@@ -47,7 +47,7 @@ interface INavItem {
 }
 const navList: INavItem[] = [
     { title: '顾问首页', icon: 'icon-shouye1', curMenu: 'home', path: '/home' },
-    { title: '地块搜索', icon: 'icon-dikuaisousuo1', curMenu: 'landSearch', path: '/landsearch' }
+    { title: '地块搜索', icon: 'icon-dikuaisousuo1', curMenu: 'landsearch', path: '/landsearch' }
 ]
 let curPageName = ref<string>('')
 let route = useRoute()

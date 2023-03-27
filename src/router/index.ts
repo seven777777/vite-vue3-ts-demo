@@ -7,7 +7,7 @@ import { createRouter, createWebHistory } from 'vue-router'
  * curPageName  对应左侧导航高亮模块
  *  ——不同模块对应
  *      首页：home
- *      地块搜索：landSearch
+ *      地块搜索：landsearch
  * keepAlive    是否缓存该页面。⚠️页面必须有name（组件名）路由配置也要增加name
  *  ——该属性慎用！！！不要随意设置为true。使用时请结合keepAliveMixin的 keepAliveMixin_targetRouteNames
  *  ——⚠️⚠️且在三级路由中无效
@@ -23,7 +23,7 @@ const router = createRouter({
                 {
                     path: 'home',
                     name: 'home',
-                    component: () => import('@/views/home/HomeIndex.vue'),
+                    component: () => import('@/views/homeview/index.vue'),
                     meta: {
                         requireAuth: true,
                         curPageName: 'home'
@@ -31,11 +31,11 @@ const router = createRouter({
                 },
                 {
                     path: 'landsearch',
-                    name: 'landSearch',
-                    component: () => import('@/views/landSearch/LandSearch.vue'),
+                    name: 'landsearch',
+                    component: () => import('@/views/landsearch/index.vue'),
                     meta: {
                         requireAuth: true,
-                        curPageName: 'landSearch'
+                        curPageName: 'landsearch'
                     }
                 }
             ]
