@@ -17,3 +17,10 @@ export const getTradeVolumn = (params: { startDate: string; endDate: string }) =
         // noLoading: true
     })
 }
+// 地图打点获取
+export const getMapMark = () => {
+    return request({
+        method: 'get',
+        url: '/mapmark'
+    })
+}

@@ -47,13 +47,26 @@
         </el-col>
         <el-col :span="12">
             <div class="base-box map-box">
-                <el-amap :mapStyle="themeStore.mapStyle" :center="center" :zoom="zoom" @init="init" />
+                <el-amap
+                    ref="myMap"
+                    :mapStyle="themeStore.mapStyle"
+                    :events="events"
+                    :center="center"
+                    :zoom="zoom"
+                    @init="init"
+                >
+                    <el-amap-marker v-for="(mark, index) in markList" :key="index" :position="[mark.lng, mark.lat]">
+                        <div style="padding: 5px 10px; white-space: nowrap; background: blue; color: #fff">
+                            测试content
+                        </div>
+                    </el-amap-marker>
+                </el-amap>
             </div>
         </el-col>
     </el-row>
 
     <el-button @click="add">发送请求</el-button>
-    <el-button @click="cancelRequest('/tradeVolumn')">取消请求</el-button>
+    <el-button @click="cancelRequest('/tradeVolumn')">取消请求22</el-button>
     <el-button @click="cancelAllRequest">取消全部请求</el-button>
 </template>
 
@@ -61,7 +74,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper'
 import 'swiper/scss'
-import { getNews, getTradeVolumn } from '@/api/home'
+import { getNews, getTradeVolumn, getMapMark } from '@/api/home'
 import { onMounted, reactive, ref } from 'vue'
 import { LandTypeColor } from '@/config/land.config'
 import BaseEchart from '@/components/chart/BaseEchart.vue'
@@ -121,7 +134,24 @@ const add = () => {
     })
     map.add(marker)
 }
+
+interface IMarkPoint {
+    lng: number
+    lat: number
+}
+let markList = ref<IMarkPoint[]>([])
+getMapMark().then(res => {
+    markList.value = res.data
+})
+let events = ref({})
 onMounted(() => {
+    let myMap = ref()
+    events.value = {
+        complete: () => {
+            console.log(myMap.value)
+            myMap.value.$$getInstance().setFitView()
+        }
+    }
     // var map = new AMap.Map('container', {
     //     zoom: 12
     // })
