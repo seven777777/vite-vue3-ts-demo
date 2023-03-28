@@ -18,27 +18,13 @@
         <el-col :span="18">
             <div class="base-box news-wrap">
                 <div class="news-pic"></div>
-                <swiper
-                    v-if="newsList.length"
-                    class="swiper-box"
-                    direction="vertical"
-                    :autoplay="{ delay: 2600, pauseOnMouseEnter: true }"
-                    :loop="true"
-                    :modules="[Autoplay]"
-                    @click="swiperClick"
-                >
-                    <swiper-slide class="swiper-item" v-for="news in newsList" :key="news.id">
-                        <div class="innerText link" :data-id="news.id">
-                            <span :style="{ '--tag-color': LandTypeColor[news.type] + '' }">
-                                【{{ news.type }}-{{ news.city }}】
-                            </span>
-                            {{ news.content }}
-                        </div>
-                    </swiper-slide>
-                </swiper>
+                <div class="swiper-box">
+                    <swiper-component :list="newsList"></swiper-component>
+                </div>
             </div>
         </el-col>
     </el-row>
+
     <el-row :gutter="10" class="m_t_15">
         <el-col :span="12">
             <div class="base-box">
@@ -71,29 +57,23 @@
 </template>
 
 <script setup lang="ts">
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay } from 'swiper'
-import 'swiper/scss'
+import Loading from '@/components/Loading.vue'
+import type { INewList } from '@/types/home.type'
 import { getNews, getTradeVolumn, getMapMark } from '@/api/home'
-import { onMounted, reactive, ref } from 'vue'
-import { LandTypeColor } from '@/config/land.config'
+import { onMounted, reactive, ref, defineAsyncComponent } from 'vue'
 import BaseEchart from '@/components/chart/BaseEchart.vue'
 import { getBaseOpt } from '@/utils/echartsOptionFactory'
 import { cancelRequest, cancelAllRequest } from '@/server'
 import { useThemeStore } from '@/stores/theme'
+
 let themeStore = useThemeStore()
 
 const value1 = ref(['2022-10-01', '2023-03-10'])
-const swiperClick: (swiper: any, event: any) => void = (swiper, event) => {
-    console.log(event.target.getAttribute('data-id'))
-}
-interface INewList {
-    id: number
-    content: string
-    date: string
-    type: string
-    city: string
-}
+
+const swiperComponent = defineAsyncComponent({
+    loader: () => import('./components/VerticalSwiper.vue'),
+    loadingComponent: Loading
+})
 let newsList: INewList[] = reactive([])
 
 const chartData = reactive({
@@ -187,20 +167,9 @@ onMounted(() => {
     }
 }
 .swiper-box {
-    flex: 1;
+    width: calc(100% - 90px);
     height: 42px;
     margin-left: 15px;
-    .swiper-item {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        .innerText {
-            @include one_line_hidden;
-            span {
-                color: var(--tag-color);
-            }
-        }
-    }
 }
 
 .map-box {
