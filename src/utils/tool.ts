@@ -1,3 +1,4 @@
+import type { ISelectOptionItem } from '@/types/common.type'
 /**
  * color=>rgba
  * @param {color} 色值
@@ -27,4 +28,21 @@ export function colorToRGBA(color: string, opacity: number): string {
         rgb[20 + x] = rgb[3].indexOf(rgb[1]) * 16 + rgb[3].indexOf(rgb[2])
     }
     return 'rgba(' + rgb[20] + ',' + rgb[21] + ',' + rgb[22] + ',' + opacity + ')'
+}
+
+/**
+ * 枚举值转options
+ * @param enumData
+ * @param iLabelAsValue label和value是否相同，默认是
+ * @returns
+ */
+export function enumToOptions(enumData: any, iLabelAsValue: boolean = true): ISelectOptionItem[] {
+    return Object.keys(enumData)
+        .filter(v => isNaN(Number(v)))
+        .map(name => {
+            return {
+                label: name,
+                value: iLabelAsValue ? name : enumData[name as keyof typeof enumData]
+            }
+        })
 }

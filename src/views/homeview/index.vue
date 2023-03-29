@@ -33,7 +33,16 @@
         </el-col>
         <el-col :span="12">
             <div class="base-box map-box">
-                <loading></loading>
+                <base-select
+                    width="250px"
+                    label="左轴"
+                    :options="LandUseTypeOpt"
+                    :iMultiple="true"
+                    :iClearable="true"
+                    :iFilterable="true"
+                    :defaultVal="selectVal"
+                    @select="select"
+                />
             </div>
         </el-col>
     </el-row>
@@ -46,7 +55,8 @@ import { getNews, getTradeVolumn } from '@/api/home'
 import { reactive, ref, defineAsyncComponent } from 'vue'
 import BaseEchart from '@/components/chart/BaseEchart.vue'
 import { getBaseOpt } from '@/utils/echartsOptionFactory'
-
+import BaseSelect from '@/components/filter/select/BaseSelect.vue'
+import { LandUseTypeOpt } from '@/config/options.config'
 // 日期范围
 const dataRange = ref(['2022-10-01', '2023-03-10'])
 const baseParam = { startDate: dataRange.value[0], endDate: dataRange.value[1] }
@@ -67,6 +77,11 @@ const chartData = reactive({
 getTradeVolumn(baseParam).then(res => {
     chartData.options = getBaseOpt(res.data)
 })
+
+let selectVal = ref([0])
+const select = (val, label) => {
+    selectVal.value = val
+}
 </script>
 
 <style lang="scss" scoped>

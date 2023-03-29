@@ -10,9 +10,7 @@
     >
         <swiper-slide class="swiper-item" v-for="news in list" :key="news.id">
             <div class="innerText link" :data-id="news.id">
-                <span :style="{ '--tag-color': LandTypeColor[news.type] + '' }">
-                    【{{ news.type }}-{{ news.city }}】
-                </span>
+                <span :style="{ '--tag-color': LandTypeColor[news.type] }">【{{ news.type }}-{{ news.city }}】</span>
                 {{ news.content }}
             </div>
         </swiper-slide>
@@ -23,7 +21,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper'
 import 'swiper/scss'
-import { LandTypeColor } from '@/config/land.config'
+import { LandTypeColor } from '@/config/enum.config'
 import type { INewList } from '@/types/home.type'
 
 const props = defineProps<{ list: INewList[] }>()

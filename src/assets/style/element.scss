@@ -27,6 +27,12 @@
     $input: (
         'bg-color': var(--input-bg-color),
         'hover-border-color': var(--border-color)
+    ),
+    $fill-color: (
+        'light': var(--inrange-bg-color)
+    ),
+    $select: (
+        'border-color-hover': var(--border-color)
     )
 );
 

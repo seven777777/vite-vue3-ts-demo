@@ -1,4 +1,5 @@
 <template>
+    <!-- ⚠️因使用vue-amap会导致热重载失效，所以暂时弃用 -->
     <el-amap :mapStyle="themeStore.mapStyle" :center="center" :zoom="zoom" @init="init">
         <el-amap-marker v-for="(mark, index) in markList" :key="index" :position="[mark.lng, mark.lat]">
             <div style="padding: 5px 10px; white-space: nowrap; background: blue; color: #fff">测试content</div>
