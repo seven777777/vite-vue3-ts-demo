@@ -1,6 +1,6 @@
 import Request from '@/server/request'
 import type { RequestConfig } from '@/server/types'
-import ENV from '@/config/env.config'
+// import ENV from '@/config/env.config'
 
 export interface ResType<T> {
     data: T
@@ -12,7 +12,8 @@ interface MyRequestConfig<T> extends RequestConfig {
 }
 
 const Server = new Request({
-    baseURL: ENV.baseUrl, // 基础路径
+    baseURL: '/api', // 基础路径
+    // baseURL: ENV.baseUrl, // 基础路径
     timeout: 120000,
     interceptors: {
         // 请求拦截器

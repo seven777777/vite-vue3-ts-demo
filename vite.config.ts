@@ -34,6 +34,7 @@ export default defineConfig({
         }
     },
     build: {
+        outDir: '/usr/local/var/www/vitetest/',
         chunkSizeWarningLimit: 1500,
         rollupOptions: {
             output: {
