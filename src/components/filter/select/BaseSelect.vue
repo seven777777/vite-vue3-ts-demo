@@ -22,7 +22,8 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import type { ISelectOptionItem } from '@/types/common.type'
+import type { ISelectOptionItem, SelectVal } from '@/types/common.type'
+
 interface IwrapProp {
     size?: 'small' | 'large' | 'default'
     width?: string
@@ -39,19 +40,19 @@ const props = withDefaults(defineProps<IwrapProp>(), {
     placeholder: '请选择'
 })
 
-const selected = ref<string | string[]>()
+const selected = ref<any>()
 watchEffect(() => {
     selected.value = props.defaultVal
 })
 
 // 选择回调
 const emits = defineEmits(['select'])
-const change = value => {
+const change = (value: any) => {
     let labelSelect
     if (props.iMultiple) {
-        labelSelect = props.options.filter(e => value.indexOf(e.value) != -1).map(e => e.label)
+        labelSelect = value ? props.options.filter(e => value.indexOf(e.value) != -1)?.map(e => e.label) : value
     } else {
-        labelSelect = value ? props.options.find(e => e.value == value).label : value
+        labelSelect = value ? props.options.find(e => e.value == value)?.label : value
     }
     emits('select', value, labelSelect)
 }
@@ -61,15 +62,15 @@ const change = value => {
 .select-wrap {
     :deep(.el-select) {
         width: 100%;
-    }
-}
-.select-with-label {
-    :deep(.el-select__tags) {
-        left: 50px;
         .el-select-tags-wrapper {
             display: flex;
             align-items: center;
         }
+    }
+}
+.select-with-label {
+    :deep(.el-select__tags) {
+        left: 60px;
     }
 }
 .select-label {

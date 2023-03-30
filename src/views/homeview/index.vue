@@ -35,11 +35,11 @@
             <div class="base-box map-box">
                 <base-select
                     width="250px"
-                    label="左轴"
+                    label="坐标轴"
                     :options="LandUseTypeOpt"
                     :iMultiple="true"
                     :iClearable="true"
-                    :iFilterable="true"
+                    :iFilterable="false"
                     :defaultVal="selectVal"
                     @select="select"
                 />
@@ -78,8 +78,8 @@ getTradeVolumn(baseParam).then(res => {
     chartData.options = getBaseOpt(res.data)
 })
 
-let selectVal = ref([0])
-const select = (val, label) => {
+let selectVal = ref<any>([0])
+const select = (val: any) => {
     selectVal.value = val
 }
 </script>
