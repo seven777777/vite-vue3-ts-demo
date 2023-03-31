@@ -1,7 +1,7 @@
 <template>
     <div
         :class="['select-wrap', { 'select-with-label': label }]"
-        :style="{ width: width, '--select-range-left': label?.length * 14 + 20 + 'px' }"
+        :style="{ width: width, '--select-range-left': label && label?.length * 14 + 20 + 'px' }"
     >
         <el-select
             v-model="selected"
@@ -39,7 +39,6 @@ interface IwrapProp {
     defaultVal?: any //默认值
 }
 const props = withDefaults(defineProps<IwrapProp>(), {
-    size: 'default',
     placeholder: '请选择'
 })
 
@@ -68,6 +67,9 @@ const change = (value: any) => {
         .el-select-tags-wrapper {
             display: flex;
             align-items: center;
+        }
+        .el-input__prefix {
+            line-height: 1;
         }
     }
 }

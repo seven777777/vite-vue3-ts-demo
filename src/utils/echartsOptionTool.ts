@@ -1,5 +1,7 @@
 import * as echarts from 'echarts'
 import { colorToRGBA } from '@/utils/tool'
+// 公共grid
+export const ChartGrid = { left: 20, right: 20, bottom: 40, top: 20, containLabel: true }
 /**
  * 图表color配置
  * @param {*} color

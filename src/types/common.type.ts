@@ -6,3 +6,9 @@ export interface ISelectOptionItem<T = string> {
 export type singleSelectVal = string | number | ISelectOptionItem
 export type doubleSelectVal = string[] | number[] | ISelectOptionItem[]
 export type SelectVal = singleSelectVal & doubleSelectVal
+
+// 时间范围
+export interface TimeRange {
+    startDate: string
+    endDate: string
+}

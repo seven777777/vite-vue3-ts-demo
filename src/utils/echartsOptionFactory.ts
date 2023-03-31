@@ -1,5 +1,5 @@
 import type { EChartsOption } from 'echarts'
-import { ChartColorSet, ChartLineAreaSet } from '@/utils/echartsOptionTool'
+import { ChartColorSet, ChartLineAreaSet, ChartGrid } from '@/utils/echartsOptionTool'
 
 export interface SeriesItem {
     data: (number | object)[]
@@ -18,7 +18,7 @@ export const getBaseOpt = (opt: ChartParam): EChartsOption => {
     const getSeries = (seriesList: SeriesItem[]): any => {
         return seriesList.map(item => {
             return {
-                ...item.name?{name:item.name}:{},
+                ...(item.name ? { name: item.name } : {}),
                 type: item.type,
                 data: item.data,
                 ...(item.type == 'bar'
@@ -49,6 +49,7 @@ export const getBaseOpt = (opt: ChartParam): EChartsOption => {
     }
     return {
         backgroundColor: 'transparent',
+        grid: ChartGrid,
         xAxis: {
             type: 'category',
             data: xAxisData

@@ -1,4 +1,5 @@
 import request from '@/server'
+import type { VolumnRequest } from '@/types/home.type'
 
 // 最新动态获取
 export const getNews = () => {
@@ -9,12 +10,12 @@ export const getNews = () => {
     })
 }
 // 最新动态获取
-export const getTradeVolumn = (params: { startDate: string; endDate: string }) => {
+export const getTradeVolumn = (params: VolumnRequest) => {
     return request({
         method: 'post',
         url: '/tradeVolumn',
-        params
-        // noLoading: true
+        params,
+        noLoading: true
     })
 }
 // 地图打点获取

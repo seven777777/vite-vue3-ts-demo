@@ -12,6 +12,7 @@
                     :unlink-panels="true"
                     placement="bottom-start"
                     :clearable="false"
+                    @change="changeDate"
                 />
             </div>
         </el-col>
@@ -19,7 +20,7 @@
             <div class="base-box news-wrap">
                 <div class="news-pic"></div>
                 <div class="swiper-box">
-                    <swiper-component :list="newsList"></swiper-component>
+                    <vertical-swiper :list="newsList" />
                 </div>
             </div>
         </el-col>
@@ -27,42 +28,53 @@
 
     <el-row :gutter="10" class="m_t_15">
         <el-col :span="12">
-            <div class="base-box">
-                <BaseEchart :options="chartData.options" height="400px"></BaseEchart>
+            <div class="base-box chart-box">
+                <Suspense>
+                    <trade-volumn :baseParam="baseParam" />
+                    <template #fallback>
+                        <loading />
+                    </template>
+                </Suspense>
             </div>
         </el-col>
         <el-col :span="12">
             <div class="base-box map-box">
-                <base-select
-                    width="250px"
-                    label="坐标轴"
-                    :options="LandUseTypeOpt"
-                    :iMultiple="true"
-                    :iClearable="true"
-                    :iFilterable="false"
-                    :defaultVal="selectVal"
-                    @select="select"
-                />
+                <Suspense>
+                    <invisor-rank :baseParam="baseParam" />
+                    <template #fallback>
+                        <loading />
+                    </template>
+                </Suspense>
             </div>
+        </el-col>
+    </el-row>
+    <el-row :gutter="10" class="m_t_15">
+        <el-col :span="12">
+            <div class="base-box"></div>
+        </el-col>
+        <el-col :span="12">
+            <div class="base-box"></div>
         </el-col>
     </el-row>
 </template>
 
 <script setup lang="ts">
 import Loading from '@/components/Loading.vue'
+import TradeVolumn from './components/TradeVolumn.vue'
+import InvisorRank from './components/InvisorRank.vue'
 import type { INewList } from '@/types/home.type'
-import { getNews, getTradeVolumn } from '@/api/home'
-import { reactive, ref, defineAsyncComponent } from 'vue'
-import BaseEchart from '@/components/chart/BaseEchart.vue'
-import { getBaseOpt } from '@/utils/echartsOptionFactory'
-import BaseSelect from '@/components/filter/select/BaseSelect.vue'
-import { LandUseTypeOpt } from '@/config/options.config'
+import { getNews } from '@/api/home'
+import { reactive, ref, defineAsyncComponent, computed } from 'vue'
+
 // 日期范围
-const dataRange = ref(['2022-10-01', '2023-03-10'])
-const baseParam = { startDate: dataRange.value[0], endDate: dataRange.value[1] }
+const dataRange = ref<string[]>(['2022-10-01', '2023-03-10'])
+const changeDate = (val: string[]) => {
+    dataRange.value = val
+}
+const baseParam = computed(() => ({ startDate: dataRange.value[0], endDate: dataRange.value[1] }))
 
 // 最新动态
-const swiperComponent = defineAsyncComponent({
+const VerticalSwiper = defineAsyncComponent({
     loader: () => import('./components/VerticalSwiper.vue'),
     loadingComponent: Loading
 })
@@ -70,18 +82,6 @@ let newsList: INewList[] = reactive([])
 getNews().then(res => {
     newsList.push(...res.data)
 })
-
-const chartData = reactive({
-    options: {}
-})
-getTradeVolumn(baseParam).then(res => {
-    chartData.options = getBaseOpt(res.data)
-})
-
-let selectVal = ref<any>([0])
-const select = (val: any) => {
-    selectVal.value = val
-}
 </script>
 
 <style lang="scss" scoped>
@@ -116,6 +116,9 @@ const select = (val: any) => {
     width: calc(100% - 90px);
     height: 42px;
     margin-left: 15px;
+}
+.chart-box {
+    height: 400px;
 }
 
 .map-box {
