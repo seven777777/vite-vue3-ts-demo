@@ -1,5 +1,8 @@
 <template>
-    <div :class="['select-wrap', { 'select-with-label': label }]" :style="{ width: width }">
+    <div
+        :class="['select-wrap', { 'select-with-label': label }]"
+        :style="{ width: width, '--select-range-left': label?.length * 14 + 20 + 'px' }"
+    >
         <el-select
             v-model="selected"
             class="m-2"
@@ -22,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import type { ISelectOptionItem, SelectVal } from '@/types/common.type'
+import type { ISelectOptionItem } from '@/types/common.type'
 
 interface IwrapProp {
     size?: 'small' | 'large' | 'default'
@@ -70,7 +73,7 @@ const change = (value: any) => {
 }
 .select-with-label {
     :deep(.el-select__tags) {
-        left: 60px;
+        left: var(--select-range-left);
     }
 }
 .select-label {
