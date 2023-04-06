@@ -55,8 +55,16 @@ body {
     line-height: 1.6;
     font-family: 'Helvetica Neue', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
         Cantarell, 'Fira Sans', 'Droid Sans', sans-serif;
-    font-size: 14px;
+    font-size: $base-font-size;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
 }

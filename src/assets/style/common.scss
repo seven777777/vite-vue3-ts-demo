@@ -10,6 +10,13 @@
         color: $color-primary;
     }
 }
+.isLink {
+    color: $color-primary;
+    cursor: pointer;
+    &:hover {
+        color: $color-primary;
+    }
+}
 
 // =========== 公共布局相关 =============
 .base-box-padding {
@@ -17,4 +24,35 @@
 }
 .base-box {
     @include base-box-attr;
+}
+
+// ============ elementPlus table ============
+.base-table {
+    &.el-table {
+        thead {
+            color: var(--table-head-text);
+        }
+        tr {
+            background-color: var(--table-bg-color);
+        }
+        th.el-table__cell {
+            background-color: var(--table-head-bg-color);
+            border-bottom: none;
+        }
+        td.el-table__cell {
+            border-bottom: none;
+        }
+        .el-table__inner-wrapper::before {
+            height: 0;
+        }
+    }
+    &.el-table--striped {
+        .el-table__body {
+            tr.el-table__row--striped {
+                td.el-table__cell {
+                    background: var(--table-bg-zebra);
+                }
+            }
+        }
+    }
 }

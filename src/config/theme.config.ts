@@ -26,7 +26,15 @@ export const ThemeConfig: IThemeConfig = {
         '--scroll-thumb-color': variable.fillColorLight3,
         '--inrange-bg-color': variable.fillColorLight1,
         '--input-bg-color': variable.colorWhite,
-        '--loading-bg-color': 'rgba(255, 255, 255, 0.6)'
+        '--loading-bg-color': 'rgba(255, 255, 255, 0.6)',
+        '--table-bg-color': variable.colorWhite,
+        '--table-head-bg-color': '#F3F6FF',
+        '--table-head-text': variable.colorBlack2,
+        '--table-head-sort': variable.colorBlack3,
+        '--table-bg-zebra': '#F6F9FD',
+        '--table-border': '#E2EBFB',
+        '--table-fixed-shadow': 'rgba(189, 207, 244, 0.5)',
+        '--table-tips': variable.colorBlack3
     },
     dark: {
         '--bg-color': variable.fillColorDark3,
@@ -45,6 +53,14 @@ export const ThemeConfig: IThemeConfig = {
         '--scroll-thumb-color': variable.fillColorDark4,
         '--inrange-bg-color': variable.fillColorDark2,
         '--input-bg-color': variable.fillColorDark3,
-        '--loading-bg-color': 'rgba(27, 31, 63, 0.8)'
+        '--loading-bg-color': 'rgba(27, 31, 63, 0.8)',
+        '--table-bg-color': variable.fillColorDark3,
+        '--table-head-bg-color': '#1F2858',
+        '--table-head-text': '#8898B1',
+        '--table-head-sort': '#8898B1',
+        '--table-bg-zebra': '#1F2858',
+        '--table-border': '#31385E',
+        '--table-fixed-shadow': 'rgba(13, 20, 68, 0.8)',
+        '--table-tips': '#8898B1'
     }
 }

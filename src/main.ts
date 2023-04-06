@@ -7,6 +7,7 @@ import App from './App.vue'
 import router from './router'
 
 import '@/assets/font/iconfont/iconfont.css' //iconfont
+import '@/assets/font/iconfont/iconfont.js' //iconfont
 // import 'element-plus/dist/index.css';
 import '@/assets/style/element.scss'
 import '@/assets/style/index.scss'

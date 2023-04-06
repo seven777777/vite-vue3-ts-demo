@@ -12,3 +12,7 @@ export interface INewList {
 export interface VolumnRequest extends TimeRange {
     timeType: 'year' | 'month' | 'day'
 }
+export interface InvisorRankRequest extends TimeRange {
+    limit: number
+    useType: string
+}

@@ -26,9 +26,9 @@
         </el-col>
     </el-row>
 
-    <el-row :gutter="10" class="m_t_15">
+    <el-row :gutter="10" class="part-top-row m_t_15">
         <el-col :span="12">
-            <div class="base-box chart-box">
+            <div class="base-box">
                 <Suspense>
                     <trade-volumn :baseParam="baseParam" />
                     <template #fallback>
@@ -38,7 +38,7 @@
             </div>
         </el-col>
         <el-col :span="12">
-            <div class="base-box map-box">
+            <div class="base-box">
                 <Suspense>
                     <invisor-rank :baseParam="baseParam" />
                     <template #fallback>
@@ -117,11 +117,13 @@ getNews().then(res => {
     height: 42px;
     margin-left: 15px;
 }
-.chart-box {
-    height: 400px;
+.el-row {
+    .el-col,
+    .base-box {
+        height: 100%;
+    }
 }
-
-.map-box {
-    height: 400px;
+.part-top-row {
+    height: 416px;
 }
 </style>

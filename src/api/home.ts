@@ -1,5 +1,5 @@
 import request from '@/server'
-import type { VolumnRequest } from '@/types/home.type'
+import type { VolumnRequest, InvisorRankRequest } from '@/types/home.type'
 
 // 最新动态获取
 export const getNews = () => {
@@ -9,11 +9,20 @@ export const getNews = () => {
         noLoading: true
     })
 }
-// 最新动态获取
+// 成交量价获取
 export const getTradeVolumn = (params: VolumnRequest) => {
     return request({
         method: 'post',
         url: '/tradeVolumn',
+        params,
+        noLoading: true
+    })
+}
+// 房企拿地排行获取
+export const getInvisorRank = (params: InvisorRankRequest) => {
+    return request({
+        method: 'post',
+        url: '/invisorRank',
         params,
         noLoading: true
     })
