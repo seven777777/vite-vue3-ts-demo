@@ -1,6 +1,5 @@
 <template>
     <el-table-column
-        :type="headColumn.iSelect ? 'selection' : ''"
         :prop="headColumn.prop"
         :align="headColumn.align || 'left'"
         :width="headColumn.width || ''"
@@ -40,7 +39,7 @@
                 <template v-if="scope.row.sCateDesc !== '汇总'">
                     <el-tooltip
                         v-for="(item, index) in headColumn.toolConfig"
-                        :content="item.disscribeTxt(scope.row)"
+                        :content="item.tipTxt(scope.row)"
                         :key="index"
                         effect="dark"
                         placement="bottom"

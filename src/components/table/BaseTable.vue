@@ -20,7 +20,14 @@
 
 <script setup lang="ts">
 import TableVolumn from './TableVolumn.vue'
-import type { TableHead, TableData } from '@/types/common.type'
+import type {
+    TableHead,
+    TableData,
+    TableSort,
+    TableCbRowConfig,
+    TableCbConfig,
+    TableSortCbConfig
+} from '@/types/common.type'
 import { onMounted, ref, watch } from 'vue'
 
 const props = withDefaults(
@@ -29,13 +36,10 @@ const props = withDefaults(
         iStripe?: boolean //是否有斑马纹
         height?: number | string
         maxHeight?: number | string
-        defaultSort?: {
-            prop: string
-            order: string
-        }
-        rowClassSet?: ({ row, rowIndex }) => string
-        cellClassSet?: ({ row, column, rowIndex, columnIndex }) => string // 单元格样式设置
-        headCellClassSet?: ({ row, column, rowIndex, columnIndex }) => string // 表头单元格样式设置
+        defaultSort?: TableSort
+        rowClassSet?: (config: TableCbRowConfig) => string
+        cellClassSet?: (config: TableCbConfig) => string // 单元格样式设置
+        headCellClassSet?: (config: TableCbConfig) => string // 表头单元格样式设置
         iRefresh?: boolean
         tableHead: TableHead[]
         tableData: TableData[]
@@ -64,7 +68,7 @@ onMounted(() => {
     )
 })
 // 表头单元格class定制
-const realHeadCellClassSet = ({ row, column, rowIndex, columnIndex }) => {
+const realHeadCellClassSet = ({ row, column, rowIndex, columnIndex }: TableCbConfig) => {
     let cellClass = ''
     const realHead = getRealHead(props.tableHead)
     if (realHead[columnIndex].isSort && props.defaultSort?.prop == realHead[columnIndex].prop) {
@@ -74,7 +78,7 @@ const realHeadCellClassSet = ({ row, column, rowIndex, columnIndex }) => {
     return cellClass
 }
 // 单元格class定制
-const realCellClassSet = ({ row, column, rowIndex, columnIndex }) => {
+const realCellClassSet = ({ row, column, rowIndex, columnIndex }: TableCbConfig) => {
     let cellClass = ''
     const realHead = getRealHead(props.tableHead)
     if (realHead[columnIndex].isSort) {
@@ -86,8 +90,8 @@ const realCellClassSet = ({ row, column, rowIndex, columnIndex }) => {
     cellClass += props.cellClassSet && props.cellClassSet({ row, column, rowIndex, columnIndex })
     return cellClass
 }
-const getRealHead = (data: TableHead[]) => {
-    let result = []
+const getRealHead = (data: TableHead[]): TableHead[] => {
+    let result: TableHead[] = []
     data.forEach((e: TableHead) => {
         if (e.children && e.children.length) {
             result = [...result, ...getRealHead(e.children)]
@@ -99,7 +103,7 @@ const getRealHead = (data: TableHead[]) => {
 }
 const emits = defineEmits(['sortChange'])
 // 排序相关
-const sortChange = obj => {
+const sortChange = (obj: TableSortCbConfig) => {
     emits('sortChange', obj)
 }
 </script>

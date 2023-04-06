@@ -29,13 +29,13 @@ import ModuleHead from '@/components/ModuleHead.vue'
 import BaseSelect from '@/components/filter/select/BaseSelect.vue'
 import BaseTable from '@/components/table/BaseTable.vue'
 import type { TimeRange, TableHead, TableData } from '@/types/common.type'
-import type { InvisorRankRequest } from '@/types/home.type'
+import type { InvisorParam } from '@/types/home.type'
 const props = defineProps<{
     // 全局参数
     baseParam: TimeRange
 }>()
 
-let invisorParam = reactive<InvisorRankRequest>({
+let invisorParam = reactive<InvisorParam>({
     useType: '纯住宅',
     limit: 10
 })
@@ -73,7 +73,7 @@ const getData = async () => {
         ...props.baseParam,
         ...invisorParam
     })
-    tableObj.tableData = res.data.map((e, i) => {
+    tableObj.tableData = res.data.map((e: TableData, i: number) => {
         return {
             ...e,
             sort: i
