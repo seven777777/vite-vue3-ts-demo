@@ -12,3 +12,7 @@ export const limitOpt = [
     { label: 'TOP20', value: 20 },
     { label: 'TOP50', value: 50 }
 ]
+export const landTypeOpt = [
+    { label: '标书地块', value: '标书地块' },
+    { label: '航拍地块', value: '航拍地块' }
+]

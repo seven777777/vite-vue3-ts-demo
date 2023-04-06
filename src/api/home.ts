@@ -1,5 +1,5 @@
 import request from '@/server'
-import type { VolumnRequest, InvisorRankRequest } from '@/types/home.type'
+import type { VolumnRequest, InvisorRankRequest, LandListRequest } from '@/types/home.type'
 
 // 最新动态获取
 export const getNews = () => {
@@ -23,6 +23,15 @@ export const getInvisorRank = (params: InvisorRankRequest) => {
     return request({
         method: 'post',
         url: '/invisorRank',
+        params,
+        noLoading: true
+    })
+}
+// 地块列表获取
+export const getLandList = (params: LandListRequest) => {
+    return request({
+        method: 'post',
+        url: '/landList',
         params,
         noLoading: true
     })

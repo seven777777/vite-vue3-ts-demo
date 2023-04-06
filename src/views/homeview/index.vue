@@ -48,12 +48,16 @@
             </div>
         </el-col>
     </el-row>
-    <el-row :gutter="10" class="m_t_15">
-        <el-col :span="12">
-            <div class="base-box"></div>
-        </el-col>
-        <el-col :span="12">
-            <div class="base-box"></div>
+    <el-row :gutter="10" class="part-bottom-row m_t_15">
+        <el-col :span="24">
+            <div class="base-box">
+                <Suspense>
+                    <land-list :baseParam="baseParam" />
+                    <template #fallback>
+                        <loading />
+                    </template>
+                </Suspense>
+            </div>
         </el-col>
     </el-row>
 </template>
@@ -62,6 +66,7 @@
 import Loading from '@/components/Loading.vue'
 import TradeVolumn from './components/TradeVolumn.vue'
 import InvisorRank from './components/InvisorRank.vue'
+import LandList from './components/LandList.vue'
 import type { INewList } from '@/types/home.type'
 import { getNews } from '@/api/home'
 import { reactive, ref, defineAsyncComponent, computed } from 'vue'
@@ -125,5 +130,8 @@ getNews().then(res => {
 }
 .part-top-row {
     height: 416px;
+}
+.part-bottom-row {
+    height: 600px;
 }
 </style>
