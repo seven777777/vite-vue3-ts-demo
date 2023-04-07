@@ -55,7 +55,7 @@ export interface TableCbColumnConfig {
 export interface TableCbConfig extends TableCbRowConfig, TableCbColumnConfig {}
 export interface TableSort {
     prop: string
-    order: string
+    order: 'ascending' | 'descending' | null
 }
 export interface TableSortCbConfig extends TableSort {
     column: TableHead

@@ -16,6 +16,10 @@
     @extend .flex;
     align-items: center;
 }
+.flex_jc_e {
+    @extend .flex;
+    justify-content: flex-end;
+}
 .flex_jc_sb {
     @extend .flex;
     justify-content: space-between;

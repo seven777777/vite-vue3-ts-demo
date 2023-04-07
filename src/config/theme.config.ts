@@ -34,7 +34,9 @@ export const ThemeConfig: IThemeConfig = {
         '--table-bg-zebra': '#F6F9FD',
         '--table-border': '#E2EBFB',
         '--table-fixed-shadow': 'rgba(189, 207, 244, 0.5)',
-        '--table-tips': variable.colorBlack3
+        '--table-tips': variable.colorBlack3,
+        '--table-sort-bg': 'rgba(232,243,255,0.4)',
+        '--icon-color-disable': '#B9C4D6'
     },
     dark: {
         '--bg-color': variable.fillColorDark3,
@@ -61,6 +63,8 @@ export const ThemeConfig: IThemeConfig = {
         '--table-bg-zebra': '#1F2858',
         '--table-border': '#31385E',
         '--table-fixed-shadow': 'rgba(13, 20, 68, 0.8)',
-        '--table-tips': '#8898B1'
+        '--table-tips': '#8898B1',
+        '--table-sort-bg': 'rgba(7, 24, 92, 0.4)',
+        '--icon-color-disable': '#47566F'
     }
 }

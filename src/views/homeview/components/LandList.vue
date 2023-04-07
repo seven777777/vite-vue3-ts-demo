@@ -12,9 +12,17 @@
         </template>
     </module-head>
     <div class="base-box-padding m_b_10">
-        <base-table :height="530" :iBorder="true" :tableHead="tableObj.tableHead" :tableData="tableObj.tableData" />
+        <base-table
+            :height="530"
+            :iBorder="true"
+            :defaultSort="tableSort"
+            :tableHead="tableObj.tableHead"
+            :tableData="tableObj.tableData"
+            @sortChange="sortChange"
+        />
         <el-pagination
             class="pagination-box"
+            v-model:current-page="currentPage"
             layout="total,prev,pager,next"
             hide-on-single-page
             :total="1000"
@@ -25,13 +33,13 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { getLandList } from '@/api/home'
 import { landTypeOpt } from '@/config/options.config'
 import ModuleHead from '@/components/ModuleHead.vue'
 import BaseSelect from '@/components/filter/select/BaseSelect.vue'
 import BaseTable from '@/components/table/BaseTable.vue'
-import type { TimeRange, TableHead, TableData } from '@/types/common.type'
+import type { TimeRange, TableHead, TableSort, TableData, TableSortCbConfig } from '@/types/common.type'
 import type { LandListParam } from '@/types/home.type'
 const props = defineProps<{
     // 全局参数
@@ -47,6 +55,7 @@ const select = (val: any, key: string) => {
     landListParam[key] = val
     getData()
 }
+
 const tableObj = reactive<{ tableHead: TableHead[]; tableData: TableData[] }>({
     tableHead: [
         { prop: 'LandCaption', label: '土地名称', isLink: true, width: '120', isFixed: 'left' },
@@ -105,8 +114,19 @@ watch(
     { deep: true }
 )
 
+const currentPage = ref<number>(4)
 const handleCurrentChange = (val: number) => {
     landListParam.page = val
+    getData()
+}
+
+let tableSort = reactive<TableSort>({
+    prop: landListParam.sOrderField,
+    order: 'ascending'
+})
+const sortChange = (obj: TableSortCbConfig) => {
+    tableSort.prop = landListParam.sOrderField = obj.prop
+    tableSort.order = obj.order
     getData()
 }
 </script>

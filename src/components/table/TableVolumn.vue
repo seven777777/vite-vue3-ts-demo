@@ -28,11 +28,7 @@
             <!-- 工具栏layout -->
             <div
                 :class="[
-                    headColumn.align == 'center'
-                        ? 'flex_center'
-                        : headColumn.align == 'right'
-                        ? 'flex_end'
-                        : 'flex_align'
+                    headColumn.align == 'center' ? 'flex_c' : headColumn.align == 'right' ? 'flex_jc_e' : 'flex_ai_c'
                 ]"
                 v-else-if="headColumn.isTool"
             >
@@ -107,6 +103,30 @@ const linkSpanClick = (scope: any, headColumn: TableHead) => {
         vertical-align: -0.15em;
         fill: currentColor;
         overflow: hidden;
+    }
+}
+.base-tool-btn {
+    width: 24px;
+    height: 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg-color);
+    border-radius: 4px;
+    color: $color-primary;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &.highlight {
+        border: none;
+        background-color: $color-primary;
+        color: #fff;
+    }
+    &.disable {
+        cursor: not-allowed;
+        i {
+            color: var(--icon-color-disable);
+        }
     }
 }
 </style>

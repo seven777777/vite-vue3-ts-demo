@@ -75,7 +75,7 @@ const realHeadCellClassSet = ({ row, column, rowIndex, columnIndex }: TableCbCon
     if (realHead[columnIndex].isSort && props.defaultSort?.prop == realHead[columnIndex].prop) {
         cellClass += 'sortCellBg '
     }
-    cellClass += props.headCellClassSet && props.headCellClassSet({ row, column, rowIndex, columnIndex })
+    cellClass += props.headCellClassSet ? props.headCellClassSet({ row, column, rowIndex, columnIndex }) : ''
     return cellClass
 }
 // 单元格class定制
@@ -91,7 +91,7 @@ const realCellClassSet = ({ row, column, rowIndex, columnIndex }: TableCbConfig)
     if (realHead[columnIndex].isSort && props.defaultSort?.prop == realHead[columnIndex].prop) {
         cellClass += 'sortCellBg '
     }
-    cellClass += props.cellClassSet && props.cellClassSet({ row, column, rowIndex, columnIndex })
+    cellClass += props.cellClassSet ? props.cellClassSet({ row, column, rowIndex, columnIndex }) : ''
     return cellClass
 }
 const getRealHead = (data: TableHead[]): TableHead[] => {
