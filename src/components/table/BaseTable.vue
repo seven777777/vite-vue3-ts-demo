@@ -49,7 +49,8 @@ const props = withDefaults(
         iStripe: true,
         height: 'auto',
         maxHeight: 'auto',
-        iRefresh: false
+        iRefresh: false,
+        iPagination: false
     }
 )
 
@@ -81,6 +82,9 @@ const realHeadCellClassSet = ({ row, column, rowIndex, columnIndex }: TableCbCon
 const realCellClassSet = ({ row, column, rowIndex, columnIndex }: TableCbConfig) => {
     let cellClass = ''
     const realHead = getRealHead(props.tableHead)
+    if (realHead[columnIndex].isLink) {
+        cellClass += 'isLink '
+    }
     if (realHead[columnIndex].isSort) {
         cellClass += 'sortCell '
     }

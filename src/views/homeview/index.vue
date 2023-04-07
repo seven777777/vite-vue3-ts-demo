@@ -132,6 +132,6 @@ getNews().then(res => {
     height: 416px;
 }
 .part-bottom-row {
-    height: 600px;
+    // height: 600px;
 }
 </style>

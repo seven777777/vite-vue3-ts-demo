@@ -11,15 +11,23 @@
             />
         </template>
     </module-head>
-    <div class="base-box-padding">
-        <base-table :height="530" :iBorder="false" :tableHead="tableObj.tableHead" :tableData="tableObj.tableData" />
+    <div class="base-box-padding m_b_10">
+        <base-table :height="530" :iBorder="true" :tableHead="tableObj.tableHead" :tableData="tableObj.tableData" />
+        <el-pagination
+            class="pagination-box"
+            layout="total,prev,pager,next"
+            hide-on-single-page
+            :total="1000"
+            :page-size="10"
+            @current-change="handleCurrentChange"
+        />
     </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, watch } from 'vue'
+import { reactive, watch } from 'vue'
 import { getLandList } from '@/api/home'
-import { landTypeOpt, limitOpt } from '@/config/options.config'
+import { landTypeOpt } from '@/config/options.config'
 import ModuleHead from '@/components/ModuleHead.vue'
 import BaseSelect from '@/components/filter/select/BaseSelect.vue'
 import BaseTable from '@/components/table/BaseTable.vue'
@@ -41,7 +49,7 @@ const select = (val: any, key: string) => {
 }
 const tableObj = reactive<{ tableHead: TableHead[]; tableData: TableData[] }>({
     tableHead: [
-        { prop: 'LandCaption', label: '土地名称', isLink: true, width: '120', isFixed: true },
+        { prop: 'LandCaption', label: '土地名称', isLink: true, width: '120', isFixed: 'left' },
         { prop: 'Address', label: '土地地址', minWidth: '120' },
         { prop: 'CityCaption', label: '城市', minWidth: '120' },
         { prop: 'Region', label: '区域', minWidth: '120' },
@@ -96,6 +104,11 @@ watch(
     },
     { deep: true }
 )
+
+const handleCurrentChange = (val: number) => {
+    landListParam.page = val
+    getData()
+}
 </script>
 
 <style lang="scss" scoped></style>

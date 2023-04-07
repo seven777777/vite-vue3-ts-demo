@@ -35,6 +35,7 @@
         'border-color-hover': var(--border-color)
     ),
     $table: (
+        'border-color': var(--border-color),
         'fixed-left-column': inset 10px 0 10px -10px var(--table-fixed-shadow),
         'fixed-right-column': inset -10px 0 10px -10px var(--table-fixed-shadow)
     )

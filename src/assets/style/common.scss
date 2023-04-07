@@ -25,9 +25,15 @@
 .base-box {
     @include base-box-attr;
 }
+// ============ 分页器 ============
+.pagination-box {
+    margin-top: 10px;
+    justify-content: flex-end;
+}
 
 // ============ elementPlus table ============
 .base-table {
+    background-color: var(--table-bg-color);
     &.el-table {
         thead {
             color: var(--table-head-text);
@@ -64,6 +70,25 @@
                 }
             }
         }
+    }
+    &.el-table--border {
+        &::after,
+        &::before {
+            width: 0;
+        }
+        .el-table__inner-wrapper {
+            &::after {
+                height: 0;
+            }
+        }
+        .el-table__cell {
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+    .el-table__border-left-patch {
+        width: 0;
     }
 }
 
