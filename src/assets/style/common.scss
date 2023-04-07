@@ -45,6 +45,16 @@
         .el-table__inner-wrapper::before {
             height: 0;
         }
+        .el-table__body-wrapper tr td.el-table-fixed-column--left,
+        .el-table__body-wrapper tr td.el-table-fixed-column--right,
+        .el-table__body-wrapper tr th.el-table-fixed-column--left,
+        .el-table__body-wrapper tr th.el-table-fixed-column--right,
+        .el-table__footer-wrapper tr td.el-table-fixed-column--left,
+        .el-table__footer-wrapper tr td.el-table-fixed-column--right,
+        .el-table__footer-wrapper tr th.el-table-fixed-column--left,
+        .el-table__footer-wrapper tr th.el-table-fixed-column--right {
+            background-color: var(--table-bg-color);
+        }
     }
     &.el-table--striped {
         .el-table__body {
@@ -53,6 +63,17 @@
                     background: var(--table-bg-zebra);
                 }
             }
+        }
+    }
+}
+
+// ============ elementPlus popper ============
+.el-popper.is-dark {
+    color: var(--text-color);
+    background: var(--menuItem-hover-fill);
+    .el-popper__arrow {
+        &::before {
+            background-color: var(--menuItem-hover-fill);
         }
     }
 }

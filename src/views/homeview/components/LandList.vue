@@ -41,21 +41,41 @@ const select = (val: any, key: string) => {
 }
 const tableObj = reactive<{ tableHead: TableHead[]; tableData: TableData[] }>({
     tableHead: [
+        { prop: 'LandCaption', label: '土地名称', isLink: true, width: '120', isFixed: true },
+        { prop: 'Address', label: '土地地址', minWidth: '120' },
+        { prop: 'CityCaption', label: '城市', minWidth: '120' },
+        { prop: 'Region', label: '区域', minWidth: '120' },
+        { prop: 'Area', label: '板块', minWidth: '120' },
+        { prop: 'OccupyArea', label: '用地面积', minWidth: '120', align: 'right', isSort: true },
+        { prop: 'TotalBuildArea', label: '总建面积', minWidth: '120', align: 'right', isSort: true },
+        { prop: 'MoneySave', label: '竞买保证金', minWidth: '120', align: 'right', isSort: true },
+        { prop: 'UseTypeTag', label: '土地属性', minWidth: '120' },
+        { prop: 'DocumentIssueDate', label: '公告日期', minWidth: '120', isSort: true },
+        { prop: 'LandTradeState', label: '交易现状', minWidth: '120' },
+        { prop: 'ChangeMethod', label: '出让方式', minWidth: '120' },
+        { prop: 'LandState', label: '土地现状', width: '100' },
         {
-            prop: 'LandCaption',
-            label: '土地名称',
-            isLink: true,
-            width: '120'
-        },
-        {
-            prop: 'Address',
-            label: '土地地址',
-            minWidth: '120'
-        },
-        {
-            prop: 'LandState',
-            label: '土地现状',
-            width: '100'
+            prop: '',
+            label: '操作',
+            width: '100',
+            isTool: true,
+            align: 'center',
+            isFixed: 'right',
+            toolConfig: [
+                {
+                    icon: 'icon-shoucang2',
+                    tipTxt(row) {
+                        return row.sCollectSta ? '取消收藏' : '添加收藏'
+                    },
+                    status(row) {
+                        return row.sCollectSta ? 'highlight' : ''
+                    },
+                    clickFunc(row) {
+                        // _this.collect(row.iAutoID, row.sCollectSta ? 2 : 1, row)
+                        console.log(row)
+                    }
+                }
+            ]
         }
     ],
     tableData: []
