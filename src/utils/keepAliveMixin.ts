@@ -11,8 +11,8 @@ export function keepAliveMixin(keepALiveList: ComponentsName[]) {
     // 请提供一个数组: ['Refresh']
     const keepAliveMixin_targetRouteNames: ComponentsName[] = keepALiveList
     onBeforeRouteLeave((to: RouteLocationNormalized, from: RouteLocationNormalized, next: any) => {
-        if (from.meta.keepAlive && !keepAliveMixin_targetRouteNames.includes(to.name)) {
-            keepAliveStore.removeKeepAlive(from.name)
+        if (from.meta.keepAlive && !keepAliveMixin_targetRouteNames.includes(to.name as ComponentsName)) {
+            keepAliveStore.removeKeepAlive(from.name as ComponentsName)
         }
         next()
     })

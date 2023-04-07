@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
-import type { RouteRecordName } from 'vue-router'
-export type ComponentsName = RouteRecordName | null | undefined
+export type ComponentsName = string | RegExp
 export interface KeepAliveStore {
     keepAliveComponents: ComponentsName[]
 }

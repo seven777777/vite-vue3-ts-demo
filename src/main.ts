@@ -7,6 +7,7 @@ import App from './App.vue'
 import router from './router'
 import type { RouteLocationNormalized } from 'vue-router'
 import { useKeepAliveStore } from '@/stores/keepAlive'
+import type { ComponentsName } from '@/stores/keepAlive'
 
 import '@/assets/font/iconfont/iconfont.css' //iconfont
 import '@/assets/font/iconfont/iconfont.js' //iconfont
@@ -28,7 +29,7 @@ const keepAliveStore = useKeepAliveStore(pinia)
 router.beforeEach((to: RouteLocationNormalized) => {
     $('.layout-content').scrollTop(0)
     if (to.meta.keepAlive) {
-        keepAliveStore.addKeepAlive(to.name)
+        keepAliveStore.addKeepAlive(to.name as ComponentsName)
     }
 })
 
