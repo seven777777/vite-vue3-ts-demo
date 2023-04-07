@@ -8,7 +8,13 @@
                 <head-bar />
             </div>
             <div class="layout-content">
-                <RouterView />
+                <router-view v-slot="{ Component }">
+                    <transition name="slide-fade" mode="out-in">
+                        <keep-alive>
+                            <component :is="Component" />
+                        </keep-alive>
+                    </transition>
+                </router-view>
             </div>
         </div>
     </div>
@@ -48,5 +54,18 @@ import HeadBar from '@/components/layout/HeadBar.vue'
         overflow: auto;
         position: relative;
     }
+}
+.slide-fade-enter-active {
+    transition: all 0.1s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
 }
 </style>

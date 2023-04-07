@@ -1,65 +1,67 @@
 <template>
-    <el-row :gutter="10" class="home-header">
-        <el-col :span="6">
-            <div class="base-box">
-                <el-date-picker
-                    v-model="dataRange"
-                    type="daterange"
-                    range-separator="-"
-                    start-placeholder="开始"
-                    end-placeholder="结束"
-                    value-format="YYYY-MM-DD"
-                    :unlink-panels="true"
-                    placement="bottom-start"
-                    :clearable="false"
-                    @change="changeDate"
-                />
-            </div>
-        </el-col>
-        <el-col :span="18">
-            <div class="base-box news-wrap">
-                <div class="news-pic"></div>
-                <div class="swiper-box">
-                    <vertical-swiper :list="newsList" />
+    <div>
+        <el-row :gutter="10" class="home-header">
+            <el-col :span="6">
+                <div class="base-box">
+                    <el-date-picker
+                        v-model="dataRange"
+                        type="daterange"
+                        range-separator="-"
+                        start-placeholder="开始"
+                        end-placeholder="结束"
+                        value-format="YYYY-MM-DD"
+                        :unlink-panels="true"
+                        placement="bottom-start"
+                        :clearable="false"
+                        @change="changeDate"
+                    />
                 </div>
-            </div>
-        </el-col>
-    </el-row>
+            </el-col>
+            <el-col :span="18">
+                <div class="base-box news-wrap">
+                    <div class="news-pic"></div>
+                    <div class="swiper-box">
+                        <vertical-swiper :list="newsList" />
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
 
-    <el-row :gutter="10" class="part-top-row m_t_15">
-        <el-col :span="12">
-            <div class="base-box">
-                <Suspense>
-                    <trade-volumn :baseParam="baseParam" />
-                    <template #fallback>
-                        <loading />
-                    </template>
-                </Suspense>
-            </div>
-        </el-col>
-        <el-col :span="12">
-            <div class="base-box">
-                <Suspense>
-                    <invisor-rank :baseParam="baseParam" />
-                    <template #fallback>
-                        <loading />
-                    </template>
-                </Suspense>
-            </div>
-        </el-col>
-    </el-row>
-    <el-row :gutter="10" class="part-bottom-row m_t_15">
-        <el-col :span="24">
-            <div class="base-box">
-                <Suspense>
-                    <land-list :baseParam="baseParam" />
-                    <template #fallback>
-                        <loading />
-                    </template>
-                </Suspense>
-            </div>
-        </el-col>
-    </el-row>
+        <el-row :gutter="10" class="part-top-row m_t_15">
+            <el-col :span="12">
+                <div class="base-box">
+                    <Suspense>
+                        <trade-volumn :baseParam="baseParam" />
+                        <template #fallback>
+                            <loading />
+                        </template>
+                    </Suspense>
+                </div>
+            </el-col>
+            <el-col :span="12">
+                <div class="base-box">
+                    <Suspense>
+                        <invisor-rank :baseParam="baseParam" />
+                        <template #fallback>
+                            <loading />
+                        </template>
+                    </Suspense>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row :gutter="10" class="part-bottom-row m_t_15">
+            <el-col :span="24">
+                <div class="base-box">
+                    <Suspense>
+                        <land-list :baseParam="baseParam" />
+                        <template #fallback>
+                            <loading />
+                        </template>
+                    </Suspense>
+                </div>
+            </el-col>
+        </el-row>
+    </div>
 </template>
 
 <script setup lang="ts">

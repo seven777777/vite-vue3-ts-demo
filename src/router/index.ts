@@ -8,6 +8,7 @@ import { createRouter, createWebHistory } from 'vue-router'
  *  ——不同模块对应
  *      首页：home
  *      地块搜索：landsearch
+ *      地图工具：maptool
  * keepAlive    是否缓存该页面。⚠️页面必须有name（组件名）路由配置也要增加name
  *  ——该属性慎用！！！不要随意设置为true。使用时请结合keepAliveMixin的 keepAliveMixin_targetRouteNames
  *  ——⚠️⚠️且在三级路由中无效
@@ -26,7 +27,8 @@ const router = createRouter({
                     component: () => import('@/views/homeview/index.vue'),
                     meta: {
                         requireAuth: true,
-                        curPageName: 'home'
+                        curPageName: 'home',
+                        keepAlive: true
                     }
                 },
                 {
@@ -36,6 +38,15 @@ const router = createRouter({
                     meta: {
                         requireAuth: true,
                         curPageName: 'landsearch'
+                    }
+                },
+                {
+                    path: 'maptool',
+                    name: 'maptool',
+                    component: () => import('@/views/maptool/index.vue'),
+                    meta: {
+                        requireAuth: true,
+                        curPageName: 'maptool'
                     }
                 }
             ]
