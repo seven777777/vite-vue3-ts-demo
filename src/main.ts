@@ -5,6 +5,8 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 import App from './App.vue'
 import router from './router'
+import type { RouteLocationNormalized } from 'vue-router'
+import { useKeepAliveStore } from '@/stores/keepAlive'
 
 import '@/assets/font/iconfont/iconfont.css' //iconfont
 import '@/assets/font/iconfont/iconfont.js' //iconfont
@@ -19,11 +21,21 @@ import '@/assets/style/index.scss'
 //     key: '7efcc4650d85a1a1219f40c203b917fc',
 //     securityJsCode: '0c88bd89439dcd794709392b5c8e7cf1'
 // })
+const pinia = createPinia()
+
+const keepAliveStore = useKeepAliveStore(pinia)
+// 全局路由拦截
+router.beforeEach((to: RouteLocationNormalized) => {
+    $('.layout-content').scrollTop(0)
+    if (to.meta.keepAlive) {
+        keepAliveStore.addKeepAlive(to.name)
+    }
+})
 
 const app = createApp(App)
 
 // app.use(VueAMap)
-app.use(createPinia())
+app.use(pinia)
 app.use(ElementPlus, {
     locale: zhCn,
     size: 'small'

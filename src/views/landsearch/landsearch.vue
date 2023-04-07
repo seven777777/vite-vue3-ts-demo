@@ -1,5 +1,5 @@
 <template>
-    <div class="base-box">landsearch1112</div>
+    <div class="base-box" style="height: 1000px">landsearch1112</div>
 </template>
 
 <script setup lang="ts"></script>

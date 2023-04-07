@@ -24,7 +24,7 @@ const router = createRouter({
                 {
                     path: 'home',
                     name: 'home',
-                    component: () => import('@/views/homeview/index.vue'),
+                    component: () => import('@/views/homeview/home.vue'),
                     meta: {
                         requireAuth: true,
                         curPageName: 'home',
@@ -34,7 +34,7 @@ const router = createRouter({
                 {
                     path: 'landsearch',
                     name: 'landsearch',
-                    component: () => import('@/views/landsearch/index.vue'),
+                    component: () => import('@/views/landsearch/landsearch.vue'),
                     meta: {
                         requireAuth: true,
                         curPageName: 'landsearch'
@@ -43,7 +43,7 @@ const router = createRouter({
                 {
                     path: 'maptool',
                     name: 'maptool',
-                    component: () => import('@/views/maptool/index.vue'),
+                    component: () => import('@/views/maptool/maptool.vue'),
                     meta: {
                         requireAuth: true,
                         curPageName: 'maptool'

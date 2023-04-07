@@ -10,7 +10,7 @@
             <div class="layout-content">
                 <router-view v-slot="{ Component }">
                     <transition name="slide-fade" mode="out-in">
-                        <keep-alive>
+                        <keep-alive :include="keepAliveStore.keepAliveComponents">
                             <component :is="Component" />
                         </keep-alive>
                     </transition>
@@ -23,6 +23,8 @@
 <script setup lang="ts">
 import SideBar from '@/components/layout/SideBar.vue'
 import HeadBar from '@/components/layout/HeadBar.vue'
+import { useKeepAliveStore } from '@/stores/keepAlive'
+const keepAliveStore = useKeepAliveStore()
 </script>
 
 <style lang="scss" scoped>

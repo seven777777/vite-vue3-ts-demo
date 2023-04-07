@@ -72,7 +72,8 @@ import LandList from './components/LandList.vue'
 import type { INewList } from '@/types/home.type'
 import { getNews } from '@/api/home'
 import { reactive, ref, defineAsyncComponent, computed } from 'vue'
-
+import { keepAliveMixin } from '@/utils/keepAliveMixin'
+keepAliveMixin(['landsearch'])
 // 日期范围
 const dataRange = ref<string[]>(['2022-10-01', '2023-03-10'])
 const changeDate = (val: string[]) => {
@@ -134,6 +135,6 @@ getNews().then(res => {
     height: 416px;
 }
 .part-bottom-row {
-    // height: 600px;
+    height: 640px;
 }
 </style>
