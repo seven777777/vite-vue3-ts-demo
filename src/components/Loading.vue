@@ -26,7 +26,7 @@ const props = withDefaults(
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba($color: grey, $alpha: 0.1);
+    background-color: rgba($color: #b9c4d6, $alpha: 0.1);
 }
 .circular {
     animation: loding-anm 2s linear infinite;
