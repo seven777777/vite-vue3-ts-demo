@@ -16,8 +16,8 @@
 import ModuleHead from '@/components/ModuleHead.vue'
 import { onMounted } from 'vue'
 import { aMapUtil } from '@/utils/aMapUtil'
-let mapUtil: aMapUtil = null
-let map: AMap.Map = null
+let mapUtil: aMapUtil
+let map: AMap.Map
 onMounted(() => {
     mapUtil = new aMapUtil()
     map = mapUtil.aMap
