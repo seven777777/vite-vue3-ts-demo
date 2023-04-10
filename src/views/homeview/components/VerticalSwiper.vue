@@ -1,6 +1,6 @@
 <template>
     <swiper
-        v-if="list.length"
+        v-if="list.length && iKeep"
         class="swiper-con"
         direction="vertical"
         :autoplay="{ delay: 2600, pauseOnMouseEnter: true }"
@@ -18,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import { onActivated, ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper'
 import 'swiper/scss'
@@ -28,6 +29,15 @@ const props = defineProps<{ list: INewList[] }>()
 const swiperClick: (swiper: any, event: any) => void = (swiper, event) => {
     console.log(event.target.getAttribute('data-id'))
 }
+
+// 解决keepalive返回swiper自动轮播失效问题
+let iKeep = ref<boolean>(true)
+onActivated(() => {
+    iKeep.value = false
+    setTimeout(() => {
+        iKeep.value = true
+    }, 100)
+})
 </script>
 
 <style lang="scss" scoped>
