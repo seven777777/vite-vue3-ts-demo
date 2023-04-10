@@ -6,4 +6,4 @@ declare module '*.vue' {
 }
 declare module 'element-plus/dist/locale/zh-cn.mjs'
 
-declare let AMap: any
+// declare let AMap: any
