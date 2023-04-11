@@ -49,11 +49,10 @@ const getAreaList = () => {
 }
 const cityData = ref<CityItem[]>([])
 const getCityList = () => {
-    console.log(1)
-    getCityData().then(res => {
+    getCityData().then((res: CityItem[]) => {
         map.clearMap()
         cityData.value = res
-        cityData.value.forEach(e => {
+        cityData.value.forEach((e: CityItem) => {
             mapUtil.drawDiyMark({
                 position: [e.sLng, e.sLat],
                 content: cityCircle(e)
