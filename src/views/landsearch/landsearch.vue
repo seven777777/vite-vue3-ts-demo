@@ -7,27 +7,63 @@
             <div class="list-head">
                 <module-head title="列表" />
             </div>
-            <div class="list-main"></div>
+            <ul class="list-main">
+                <li v-for="(area, i) in areaData" :key="i">{{ area.sAreaOrCity }}</li>
+            </ul>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import ModuleHead from '@/components/ModuleHead.vue'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { aMapUtil } from '@/utils/aMapUtil'
+import type { AreaItem } from '@/mock/area'
+import type { CityItem } from '@/mock/city'
+import { getAreaData, getCityData } from '@/api/common'
+import { areaCircle, cityCircle } from '@/utils/aMapMarkDom'
+
 let mapUtil: aMapUtil
 let map: AMap.Map
 onMounted(() => {
     mapUtil = new aMapUtil()
     map = mapUtil.aMap
-    map.on('complete', () => {
-        console.log(1111)
-    })
-    console.log(333)
 })
+
+const areaData = ref<AreaItem[]>([])
+const getAreaList = () => {
+    getAreaData().then((res: AreaItem[]) => {
+        areaData.value = res
+        areaData.value.forEach((e: AreaItem) => {
+            const mark = mapUtil.drawDiyMark({
+                position: [e.sLng, e.sLat],
+                content: areaCircle(e)
+            })
+
+            mark.on('click', () => {
+                getCityList()
+            })
+        })
+        map.setFitView()
+    })
+}
+const cityData = ref<CityItem[]>([])
+const getCityList = () => {
+    console.log(1)
+    getCityData().then(res => {
+        map.clearMap()
+        cityData.value = res
+        cityData.value.forEach(e => {
+            mapUtil.drawDiyMark({
+                position: [e.sLng, e.sLat],
+                content: cityCircle(e)
+            })
+        })
+        map.setFitView()
+    })
+}
 onMounted(() => {
-    console.log(2222, map)
+    getAreaList()
 })
 </script>
 

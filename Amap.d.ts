@@ -398,6 +398,9 @@ declare namespace AMap {
         /**点标记显示位置偏移量, 默认值为Pixel(-10, -34)。Marker指定position后, 默认以marker左上角位置为基准点, 对准所给定的position位置, 若需使marker指定位置对准在position处, 需根据marker的尺寸设置一定的偏移量。**/
         offset?: Pixel
 
+        /** 信息窗体锚点。默认值：'bottom-center';可选值：'top-left'|'top-center'|'top-right'|'middle-left'|'center'|'middle-right'|'bottom-left'|'bottom-center'|'bottom-right' */
+        anchor?: string
+
         /**需在点标记中显示的图标。可以是一个本地图标地址, 或者Icon对象。有合法的content内容时, 此属性无效**/
         icon?: string | Icon
 
@@ -596,6 +599,9 @@ declare namespace AMap {
 
         /**获取用户自定义属性**/
         public getExtData(): any
+
+        /**事件绑定**/
+        public on: any
     }
     /** MarkerShapeOptions **/
     export interface MarkerShapeOptions {
