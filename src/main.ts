@@ -26,10 +26,17 @@ const pinia = createPinia()
 
 const keepAliveStore = useKeepAliveStore(pinia)
 // 全局路由拦截
-router.beforeEach((to: RouteLocationNormalized) => {
+router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
     $('.layout-content').scrollTop(0)
     if (to.meta.keepAlive) {
         keepAliveStore.addKeepAlive(to.name as ComponentsName)
+    }
+    if (
+        from.name &&
+        Array.isArray(to.meta.keepALiveList) &&
+        !to.meta.keepALiveList.includes(from.name as ComponentsName)
+    ) {
+        keepAliveStore.removeKeepAlive(to.name as ComponentsName)
     }
 })
 

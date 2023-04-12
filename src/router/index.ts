@@ -10,8 +10,11 @@ import { createRouter, createWebHistory } from 'vue-router'
  *      地块搜索：landsearch
  *      地图工具：maptool
  * keepAlive    是否缓存该页面。⚠️页面必须有name（组件名）路由配置也要增加name
- *  ——该属性慎用！！！不要随意设置为true。使用时请结合keepAliveMixin的 keepAliveMixin_targetRouteNames
+ *  ——该属性慎用！！！不要随意设置为true。使用时请结合使用keepAliveMixin
  *  ——⚠️⚠️且在三级路由中无效
+ * keepALiveList    跳转缓存的页面列表
+ *  ——当下个路由名不在该数组中时，取消页面的keep alive缓存
+ *  ——例如空数组就代表不论去哪个页面，都会取消缓存。相当于清除本页面的缓存状态。
  */
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,7 +31,8 @@ const router = createRouter({
                     meta: {
                         requireAuth: true,
                         curPageName: 'home',
-                        keepAlive: true
+                        keepAlive: true,
+                        keepALiveList: ['landsearch']
                     }
                 },
                 {
