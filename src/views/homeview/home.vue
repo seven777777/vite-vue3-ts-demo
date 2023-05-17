@@ -61,6 +61,8 @@
                 </div>
             </el-col>
         </el-row>
+
+        <c-button />
     </div>
 </template>
 
