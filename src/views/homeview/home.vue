@@ -63,6 +63,7 @@
         </el-row>
 
         <c-button />
+        <c-tag />
     </div>
 </template>
 
