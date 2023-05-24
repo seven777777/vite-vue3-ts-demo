@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import CricUi from 'cric-ui'
+import CricUI from 'cric-ui'
 import 'cric-ui/lib/style.css'
 
 import App from './App.vue'
@@ -45,7 +45,7 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) =
 const app = createApp(App)
 
 // app.use(VueAMap)
-app.use(CricUi)
+app.use(CricUI)
 app.use(pinia)
 app.use(ElementPlus, {
     locale: zhCn,
