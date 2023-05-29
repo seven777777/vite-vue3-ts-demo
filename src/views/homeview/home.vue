@@ -61,7 +61,7 @@
                 </div>
             </el-col>
         </el-row>
-        <c-button></c-button>
+        <c-button>1</c-button>
     </div>
 </template>
 
