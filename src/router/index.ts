@@ -21,7 +21,7 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            redirect: '/home',
+            redirect: '/maptool',
             component: () => import('@/components/layout/BasePageLayout.vue'),
             children: [
                 {
