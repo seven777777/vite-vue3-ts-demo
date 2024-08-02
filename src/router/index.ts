@@ -52,6 +52,15 @@ const router = createRouter({
                         requireAuth: true,
                         curPageName: 'maptool'
                     }
+                },
+                {
+                    path: 'test',
+                    name: 'test',
+                    component: () => import('@/views/testview/index.vue'),
+                    meta: {
+                        requireAuth: true,
+                        curPageName: 'test'
+                    }
                 }
             ]
         }

@@ -6,6 +6,10 @@
             <div class="head-nav-item"><a href="#">操作指南</a></div>
             <div class="head-nav-item"><a href="#">数据说明</a></div>
             <div class="head-nav-item">
+                <locale />
+            </div>
+
+            <div class="head-nav-item">
                 <el-dropdown trigger="click">
                     <span class="flex_c cursor_p">
                         Seven
@@ -24,6 +28,7 @@
 
 <script setup lang="ts">
 import HeadSearch from '@/components/filter/HeadSearch.vue'
+import Locale from './Locale.vue'
 </script>
 
 <style lang="scss" scoped>
