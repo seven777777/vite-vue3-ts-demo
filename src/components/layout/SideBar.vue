@@ -11,7 +11,7 @@
                 :to="item.path"
             >
                 <i :class="['iconfont', item.icon]"></i>
-                {{ item.title }}
+                <span>{{ item.title }}</span>
             </router-link>
         </ul>
         <el-switch
@@ -29,9 +29,12 @@
 
 <script setup lang="ts">
 import { useThemeStore } from '@/stores/theme'
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 // 主题配置Store
 const themeStore = useThemeStore()
@@ -45,12 +48,12 @@ interface INavItem {
     curMenu: string
     path: string
 }
-const navList: INavItem[] = [
-    { title: '顾问首页', icon: 'icon-shouye1', curMenu: 'home', path: '/home' },
+const navList = computed<INavItem[]>(() => [
+    { title: `${t('home')}`, icon: 'icon-shouye1', curMenu: 'home', path: '/home' },
     { title: '地块搜索', icon: 'icon-dikuaisousuo1', curMenu: 'landsearch', path: '/landsearch' },
     { title: '地图工具', icon: 'icon-ditu', curMenu: 'maptool', path: '/maptool' },
     { title: '测试模块', icon: 'icon-ditugongju', curMenu: 'test', path: '/test' }
-]
+])
 let curPageName = ref<string>('')
 let route = useRoute()
 // 监听路由动态修改导航高亮item

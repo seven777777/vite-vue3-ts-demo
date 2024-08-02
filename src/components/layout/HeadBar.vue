@@ -17,7 +17,7 @@
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item>登出</el-dropdown-item>
+                            <el-dropdown-item>{{ $t('dengChu') }}</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
