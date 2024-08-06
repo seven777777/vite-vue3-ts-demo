@@ -10,7 +10,7 @@ const THEME_MODE_ATTR = 'theme-mode'
 export const useThemeStore = defineStore('theme', {
     state() {
         return {
-            themeType: localStorage.getItem('kThemeMode') || 'light'
+            themeType: localStorage.getItem('kThemeMode') ?? 'light'
         }
     },
     getters: {

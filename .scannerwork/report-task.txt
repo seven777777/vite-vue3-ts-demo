@@ -1,0 +1,6 @@
+projectKey=vite-vue3-ts-demo
+serverUrl=http://localhost:9000
+serverVersion=10.5.1.90531
+dashboardUrl=http://localhost:9000/dashboard?id=vite-vue3-ts-demo
+ceTaskId=d481b58c-6b2d-4d43-bb9b-99e7ba95a292
+ceTaskUrl=http://localhost:9000/api/ce/task?id=d481b58c-6b2d-4d43-bb9b-99e7ba95a292

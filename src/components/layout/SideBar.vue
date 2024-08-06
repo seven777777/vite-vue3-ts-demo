@@ -50,9 +50,9 @@ interface INavItem {
 }
 const navList = computed<INavItem[]>(() => [
     { title: `${t('home')}`, icon: 'icon-shouye1', curMenu: 'home', path: '/home' },
-    { title: '地块搜索', icon: 'icon-dikuaisousuo1', curMenu: 'landsearch', path: '/landsearch' },
-    { title: '地图工具', icon: 'icon-ditu', curMenu: 'maptool', path: '/maptool' },
-    { title: '测试模块', icon: 'icon-ditugongju', curMenu: 'test', path: '/test' }
+    { title: t('diKuaiSouSuo'), icon: 'icon-dikuaisousuo1', curMenu: 'landsearch', path: '/landsearch' },
+    { title: t('diTuGongJu'), icon: 'icon-ditu', curMenu: 'maptool', path: '/maptool' },
+    { title: t('ceShiMoKuai'), icon: 'icon-ditugongju', curMenu: 'test', path: '/test' }
 ])
 let curPageName = ref<string>('')
 let route = useRoute()

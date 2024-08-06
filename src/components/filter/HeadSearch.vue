@@ -3,11 +3,11 @@
         v-model="searchKey"
         class="head-search"
         size="large"
-        placeholder="请输入土地名称/编号、土地地址、板块名称或企业名称"
+        :placeholder="`${$t('qingShuRuTuDiMingChengBianHaoTuDiDiZhiBanKuaiMingChengHuoQiYeMingCheng')}`"
         :prefix-icon="Search"
     >
         <template #suffix>
-            <el-button class="search-btn" @click="search">搜一下</el-button>
+            <el-button class="search-btn" @click="search">{{ $t('souYiXia') }}</el-button>
         </template>
     </el-input>
 </template>

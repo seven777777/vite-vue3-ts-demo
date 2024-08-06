@@ -9,7 +9,7 @@ import type { ISelectOptionItem } from '@/types/common.type'
  */
 export function colorToRGBA(color: string, opacity: number): string {
     let _color: string = color
-    if (color.substring(0, 1) == '#') _color = color.substring(1)
+    if (color.startsWith('#')) _color = color.substring(1)
     if (_color.length == 3)
         _color = _color
             .split('')

@@ -1,4 +1,13 @@
 {
+  "caoZuoZhiNan": "instruction",
+  "ceShiMoKuai": "Test Module",
+  "cricShouYe": "CRIC Home",
   "dengChu": "Logout",
-  "home": "Home"
+  "diKuaiSouSuo": "Land Search",
+  "diTuGongJu": "Map Tool",
+  "home": "Home",
+  "jiaZaiZhong": "Loading",
+  "qingShuRuTuDiMingChengBianHaoTuDiDiZhiBanKuaiMingChengHuoQiYeMingCheng": "Please enter the land name/number, land address, section name, or company name",
+  "shuJuShuoMing": "Data Description",
+  "souYiXia": "Search for it"
 }

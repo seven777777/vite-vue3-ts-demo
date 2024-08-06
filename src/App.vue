@@ -8,5 +8,3 @@
 import { ElConfigProvider } from 'element-plus'
 import { showLocale } from '@/lang/elLocale'
 </script>
-
-<style lang="scss" scoped></style>

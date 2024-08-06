@@ -1,6 +1,6 @@
 <template>
     <div class="loading-wrap">
-        <template v-if="type == 'text'">加载中。。。</template>
+        <template v-if="type == 'text'">{{ $t('jiaZaiZhong') }}。。。</template>
         <template v-else>
             <el-icon class="circular"><Loading /></el-icon>
         </template>

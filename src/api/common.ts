@@ -1,7 +1,7 @@
 /**
  * 公共基础接口封装
  */
-import request from '@/server'
+// import request from '@/server'
 import { areaList, type AreaItem } from '@/mock/area'
 import { cityList, type CityItem } from '@/mock/city'
 

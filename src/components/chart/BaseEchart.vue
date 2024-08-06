@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import type { EChartsOption } from 'echarts'
-import useEchart from '@/utils/useEcharts'
+import UseEchart from '@/utils/useEcharts'
 import { onBeforeUnmount, onMounted, ref, watch, watchEffect } from 'vue'
 import { useThemeStore } from '@/stores/theme'
 const themeStore = useThemeStore()
@@ -41,7 +41,7 @@ const onDispose = (UseEchart: any) => {
 }
 
 onMounted(() => {
-    let myUseEchart = new useEchart(echartDivRef.value, themeStore.themeType)
+    let myUseEchart = new UseEchart(echartDivRef.value, themeStore.themeType)
     watchEffect(() => {
         myUseEchart.setOptions(props.options)
     })

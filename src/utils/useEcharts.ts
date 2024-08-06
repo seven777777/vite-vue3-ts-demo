@@ -1,6 +1,6 @@
 import * as echarts from 'echarts'
 
-class useEcharts {
+class UseEcharts {
     echartInstance: any
     el: HTMLElement
     theme: string
@@ -20,4 +20,4 @@ class useEcharts {
     }
 }
 
-export default useEcharts
+export default UseEcharts

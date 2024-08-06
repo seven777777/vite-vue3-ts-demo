@@ -35,5 +35,3 @@ getMapMark().then(res => {
     markList.value = res.data
 })
 </script>
-
-<style lang="scss" scoped></style>

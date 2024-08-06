@@ -10,7 +10,7 @@ const themeStore = useThemeStore()
 
 const BASD_POSITION = [116.480983, 39.989628]
 
-export class aMapUtil {
+export class AMapUtil {
     aMap: AMap.Map
     constructor(el: string = 'landMap', opt: AMap.MapOptions = {}) {
         this.aMap = new AMap.Map(el, {

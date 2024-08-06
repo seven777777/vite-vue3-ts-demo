@@ -17,16 +17,16 @@
 <script setup lang="ts">
 import ModuleHead from '@/components/ModuleHead.vue'
 import { onMounted, ref } from 'vue'
-import { aMapUtil } from '@/utils/aMapUtil'
+import { AMapUtil } from '@/utils/aMapUtil'
 import type { AreaItem } from '@/mock/area'
 import type { CityItem } from '@/mock/city'
 import { getAreaData, getCityData } from '@/api/common'
 import { areaCircle, cityCircle } from '@/utils/aMapMarkDom'
 
-let mapUtil: aMapUtil
+let mapUtil: AMapUtil
 let map: AMap.Map
 onMounted(() => {
-    mapUtil = new aMapUtil()
+    mapUtil = new AMapUtil()
     map = mapUtil.aMap
 })
 

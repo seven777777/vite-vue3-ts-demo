@@ -2,9 +2,11 @@
     <div class="head-bar">
         <head-search />
         <div class="flex_c">
-            <div class="head-nav-item"><a href="/">CRIC首页</a></div>
-            <div class="head-nav-item"><a href="#">操作指南</a></div>
-            <div class="head-nav-item"><a href="#">数据说明</a></div>
+            <div class="head-nav-item">
+                <a href="/">{{ $t('cricShouYe') }}</a>
+            </div>
+            <div class="head-nav-item"><a href="#">{{ $t('caoZuoZhiNan') }}</a></div>
+            <div class="head-nav-item"><a href="#">{{ $t('shuJuShuoMing') }}</a></div>
             <div class="head-nav-item">
                 <locale />
             </div>
