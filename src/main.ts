@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
-import { CButton } from 'cric-ui'
+// import { CButton } from 'cric-ui'
+import CricUI from 'cric-ui'
 import 'cric-ui/lib/style.css'
 import App from './App.vue'
 import router from './router'
@@ -46,7 +47,8 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized) =
 const app = createApp(App)
 
 // app.use(VueAMap)
-app.use(CButton)
+app.use(CricUI)
+// app.use(CButton)
 app.use(pinia)
 app.use(i18n)
 app.use(ElementPlus, {

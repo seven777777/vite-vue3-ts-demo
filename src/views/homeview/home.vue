@@ -7,8 +7,8 @@
                         v-model="dataRange"
                         type="daterange"
                         range-separator="-"
-                        start-placeholder="开始"
-                        end-placeholder="结束"
+                        :start-placeholder="$t('kaiShi')"
+                        :end-placeholder="$t('jieShu')"
                         value-format="YYYY-MM-DD"
                         :unlink-panels="true"
                         placement="bottom-start"
@@ -62,6 +62,11 @@
             </el-col>
         </el-row>
         <c-button>1</c-button>
+        <c-arrow-btn width="150px" :status="true">
+            <template #preIcon>
+                <i class="iconfont icon-sousuo2"></i>
+            </template>
+        </c-arrow-btn>
     </div>
 </template>
 

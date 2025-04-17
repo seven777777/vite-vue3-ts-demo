@@ -1,0 +1,4 @@
+{
+    "sonarQubeUri": "http://localhost:9000",
+    "projectKey": "vite-vue3-ts-demo"
+}
